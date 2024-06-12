@@ -5,11 +5,11 @@ const paymentStatusEnum = ['pending', 'paid', 'cancelled'];
 
 const BookingSchema = mongoose.Schema({
 	userId: {
-		type: Number,
+		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
 	roomId: {
-		type: Number,
+		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
 	checkInDate: {

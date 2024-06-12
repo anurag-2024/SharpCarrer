@@ -24,7 +24,7 @@ const UserSchema = mongoose.Schema({
 		default: "non specified"
 	},
 	bookingHistory: {
-		type: [String],
+		type: [mongoose.Schema.Types.ObjectId],
 		default: []
 	},
 	preferences: {
