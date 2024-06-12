@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
-import User from '../models/User.js';
+import User from '../models/User.model.js';
 
 export const signup = async (req, res) => {
 	const errors = validationResult(req);
@@ -9,15 +9,19 @@ export const signup = async (req, res) => {
 		return res.status(400).json({ errors: errors.array() });
 	}
 
-	const { name, email, password, isVerified } = req.body;
+	const { name, email, password, contactNo, isVerified } = req.body;
 
 	try {
 		let user = await User.findOne({ email });
 		if (user) {
 			return res.status(400).json({ msg: 'User with the same email address already exists!' });
 		}
+		user = await User.findOne({ contactNo });
+		if (user) {
+			return res.status(400).json({ msg: 'User with the same phone number already exists!' });
+		}
 
-		user = new User({ name, email, password });
+		user = new User({ name, email, password, contactNo });
 
 		// pwd crypt
 		const salt = await bcrypt.genSalt(10);

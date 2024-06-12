@@ -14,6 +14,23 @@ const UserSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
+	contactNo: {
+		type: Number,
+		required: true,
+		unique: true
+	},
+	address: {
+		type: String,
+		default: "non specified"
+	},
+	bookingHistory: {
+		type: [String],
+		default: []
+	},
+	preferences: {
+		type: [String],
+		default: []
+	},
 	isVerified: {
 		type: Boolean,
 		default: false
@@ -25,4 +42,5 @@ const UserSchema = mongoose.Schema({
 });
 
 const User = mongoose.model('User', UserSchema);
+
 export default User;
