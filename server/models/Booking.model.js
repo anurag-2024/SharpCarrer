@@ -4,28 +4,28 @@ const bookingStatusEnum = ['pending', 'confirmed', 'cancelled'];
 const paymentStatusEnum = ['pending', 'paid', 'cancelled'];
 
 const BookingSchema = mongoose.Schema({
-	userId: {
+	User_id: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
-	roomId: {
+	Room_id: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
-	checkInDate: {
+	Check_in_date: {
 		type: Date,
 		required: true
 	},
-	checkOutDate: {
+	Check_out_date: {
 		type: Date,
 		required: true
 	},
-	bookingStatus: {
+	Booking_status: {
 		type: String,
 		enum: bookingStatusEnum,
 		default: 'pending'
 	},
-	paymentStatus: {
+	Payment_status: {
 		type: String,
 		enum: paymentStatusEnum,
 		default: 'pending'

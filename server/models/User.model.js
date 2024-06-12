@@ -1,37 +1,37 @@
 import mongoose from 'mongoose';
 
 const UserSchema = mongoose.Schema({
-	name: {
+	Name: {
 		type: String,
 		required: true
 	},
-	email: {
+	Email: {
 		type: String,
 		required: true,
 		unique: true
 	},
-	password: {
+	Password: {
 		type: String,
 		required: true
 	},
-	contactNo: {
+	Contact_no: {
 		type: Number,
 		required: true,
 		unique: true
 	},
-	address: {
+	Address: {
 		type: String,
 		default: "non specified"
 	},
-	bookingHistory: {
+	Booking_history: {
 		type: [mongoose.Schema.Types.ObjectId],
 		default: []
 	},
-	preferences: {
+	Preferences: {
 		type: [String],
 		default: []
 	},
-	isVerified: {
+	Is_verified: {
 		type: Boolean,
 		default: false
 	},
