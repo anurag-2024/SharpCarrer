@@ -6,7 +6,8 @@ const calendarSchema = new mongoose.Schema({
     required: true,
   },
   Room_id: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Room",
     required: true,
   },
   date: {
