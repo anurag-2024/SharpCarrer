@@ -2,11 +2,13 @@ import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
   User_id: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",  
     required: true,
   },
   Booking_id: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Booking",  
     required: true,
   },
   Rating: {
