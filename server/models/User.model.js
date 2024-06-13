@@ -1,20 +1,37 @@
 import mongoose from 'mongoose';
 
 const UserSchema = mongoose.Schema({
-	name: {
+	Name: {
 		type: String,
 		required: true
 	},
-	email: {
+	Email: {
 		type: String,
 		required: true,
 		unique: true
 	},
-	password: {
+	Password: {
 		type: String,
 		required: true
 	},
-	isVerified: {
+	Contact_no: {
+		type: Number,
+		required: true,
+		unique: true
+	},
+	Address: {
+		type: String,
+		default: "non specified"
+	},
+	Booking_history: {
+		type: [mongoose.Schema.Types.ObjectId],
+		default: []
+	},
+	Preferences: {
+		type: [String],
+		default: []
+	},
+	Is_verified: {
 		type: Boolean,
 		default: false
 	},
@@ -25,4 +42,5 @@ const UserSchema = mongoose.Schema({
 });
 
 const User = mongoose.model('User', UserSchema);
+
 export default User;

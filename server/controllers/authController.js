@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
-import User from '../models/User.js';
+import User from '../models/User.model.js';
 
 export const signup = async (req, res) => {
 	const errors = validationResult(req);
@@ -9,19 +9,23 @@ export const signup = async (req, res) => {
 		return res.status(400).json({ errors: errors.array() });
 	}
 
-	const { name, email, password, isVerified } = req.body;
+	const { Name, Email, Password, Contact_no, Is_verified } = req.body;
 
 	try {
-		let user = await User.findOne({ email });
+		let user = await User.findOne({ Email });
 		if (user) {
 			return res.status(400).json({ msg: 'User with the same email address already exists!' });
 		}
+		user = await User.findOne({ Contact_no });
+		if (user) {
+			return res.status(400).json({ msg: 'User with the same phone number already exists!' });
+		}
 
-		user = new User({ name, email, password });
+		user = new User({ Name, Email, Password, Contact_no });
 
 		// pwd crypt
 		const salt = await bcrypt.genSalt(10);
-		user.password = await bcrypt.hash(password, salt);
+		user.Password = await bcrypt.hash(Password, salt);
 
 		await user.save();
 
@@ -44,16 +48,17 @@ export const login = async (req, res) => {
 		return res.status(400).json({ errors: errors.array() });
 	}
 
-	const { email, password } = req.body;
+	const { Email, Password } = req.body;
 
 	try {
-		let user = await User.findOne({ email });
+		let user = await User.findOne({ Email });
 		if (!user) {
 			return res.status(400).json({ msg: 'Invalid Credentials' });
 		}
 
+		console.log(user);
 		// verify password
-		const isMatch = await bcrypt.compare(password, user.password);
+		const isMatch = await bcrypt.compare(Password, user.Password);
 		if (!isMatch) {
 			return res.status(400).json({ msg: 'Invalid Credentials' });
 		}
