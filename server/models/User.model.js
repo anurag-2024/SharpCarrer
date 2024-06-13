@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+const roleEnum = ['user', 'admin'];
+
 const UserSchema = mongoose.Schema({
 	Name: {
 		type: String,
@@ -34,6 +36,11 @@ const UserSchema = mongoose.Schema({
 	Is_verified: {
 		type: Boolean,
 		default: false
+	},
+	Role: {
+		type: String,
+		enum: roleEnum,
+		default: 'user'
 	},
 	date: {
 		type: Date,
