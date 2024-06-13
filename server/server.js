@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
 import roomsRoutes from './routes/rooms.js';
-import { authenticateToken, authenticateAdminToken } from './middlewares/auth.js';
 
 dotenv.config(); // load environment variable
 connectDB(); // connect to mongoDB
@@ -17,7 +16,7 @@ app.use(cors()); // Enable cors
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/room', authenticateAdminToken, roomsRoutes);
+app.use('/api/rooms', roomsRoutes);
 
 const PORT = process.env.PORT || 5000;
 
