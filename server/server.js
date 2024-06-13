@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import authRoutes from './routes/auth.js';
-import roomsRoutes from './routes/rooms.js';
+import authRoutes from './routes/authRouter.js';
+import roomsRoutes from './routes/roomsRouter.js';
 
 dotenv.config(); // load environment variable
 connectDB(); // connect to mongoDB

@@ -1,6 +1,6 @@
 import express from 'express';
 import { check } from 'express-validator';
-import { authenticateToken, authenticateAdminToken } from '../middlewares/auth.js';
+import { authenticateToken, authenticateAdminToken } from '../middlewares/authMiddleware.js';
 import { createRoom, deleteRoom, getRoom, getRooms } from '../controllers/roomsController.js';
 
 const router = express.Router();
