@@ -140,7 +140,7 @@ export const getPaymentStatus = async (req, res) => {
 		const payment = await Payment.findOne({ Booking_id }).select('Payment_status');
 		
 		if (!payment)
-			return res.status(404).json({ message: 'There is no payment saved for this booking' });
+			return res.status(401).json({ message: 'There is no payment saved for this booking' });
 
 		res.status(200).json(payment);
 	} catch (err) {

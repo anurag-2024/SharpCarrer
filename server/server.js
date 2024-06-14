@@ -5,20 +5,22 @@ import connectDB from './config/db.js';
 import authRouter from './routes/authRouter.js';
 import roomsRouter from './routes/roomsRouter.js';
 import bookingsRouter from './routes/bookingsRouter.js';
+import userRouter from './routes/userRoutes.js';
 
-dotenv.config(); // load environment variable
-connectDB(); // connect to mongoDB
+dotenv.config(); 
+connectDB(); 
 
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Enable cors
+app.use(cors()); // Enable CORS
 
 // Routes
 app.use('/api/auth', authRouter);
 app.use('/api/rooms', roomsRouter);
 app.use('/api/bookings', bookingsRouter);
+app.use('/api/user', userRouter);
 
 const PORT = process.env.PORT || 5000;
 
