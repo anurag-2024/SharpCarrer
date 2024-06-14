@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-const bookingStatusEnum = ['pending', 'confirmed', 'cancelled'];
-const paymentStatusEnum = ['pending', 'paid', 'cancelled'];
+const bookingStatusEnum = ['Pending', 'Confirmed', 'Cancelled'];
+const paymentStatusEnum = ['Pending', 'Paid', 'Cancelled'];
 
 const BookingSchema = mongoose.Schema({
 	User_id: {
@@ -23,12 +23,12 @@ const BookingSchema = mongoose.Schema({
 	Booking_status: {
 		type: String,
 		enum: bookingStatusEnum,
-		default: 'pending'
+		default: 'Pending'
 	},
 	Payment_status: {
 		type: String,
 		enum: paymentStatusEnum,
-		default: 'pending'
+		default: 'Pending'
 	}
 });
 
