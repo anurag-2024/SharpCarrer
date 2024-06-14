@@ -10,14 +10,14 @@ const router = express.Router();
  * 
  * @route 	{GET} /api/rooms
  */
-router.get('/', authenticateToken, getRooms);
+router.get('/', getRooms); //No need to authenticate here. Anyone can view rooms
 
 /**
  * Get a room
  * 
  * @route 	{GET} /api/rooms/:id
  */
-router.get('/:id', authenticateToken, getRoom);
+router.get('/:id', getRoom);
 
 /**
  * Add room (only admins are allowed)
