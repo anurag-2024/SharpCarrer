@@ -6,14 +6,14 @@ import authRouter from './routes/authRouter.js';
 import roomsRouter from './routes/roomsRouter.js';
 import bookingsRouter from './routes/bookingsRouter.js';
 
-dotenv.config(); // load environment variable
-connectDB(); // connect to mongoDB
+dotenv.config(); 
+connectDB(); 
 
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Enable cors
+app.use(cors()); // Enable CORS
 
 // Routes
 app.use('/api/auth', authRouter);
