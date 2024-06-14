@@ -1,8 +1,15 @@
+/**
+ * @module	Booking.model
+ */
+
 import mongoose from 'mongoose';
 
 const bookingStatusEnum = ['Pending', 'Confirmed', 'Cancelled'];
 const paymentStatusEnum = ['Pending', 'Paid', 'Cancelled'];
 
+/**
+ * Booking Schema
+ */
 const BookingSchema = mongoose.Schema({
 	User_id: {
 		type: mongoose.Schema.Types.ObjectId,
@@ -32,6 +39,9 @@ const BookingSchema = mongoose.Schema({
 	}
 });
 
+/**
+ * Booking
+ */
 const Booking = mongoose.model('Booking', BookingSchema);
 
 export default Booking;
