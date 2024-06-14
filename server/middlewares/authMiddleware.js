@@ -1,7 +1,17 @@
+/**
+ * @module 	authMiddleware
+ */
+
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import User from '../models/User.model.js';
 
+/**
+ * Authenticate user token
+ * 
+ * @param 	{Request} req - Express request object
+ * @param 	{Response} res - Express response object
+ */
 export const authenticateToken = (req, res, next) => {
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];
@@ -14,6 +24,12 @@ export const authenticateToken = (req, res, next) => {
 	});
 }
 
+/**
+ * Authenticate admin token
+ * 
+ * @param 	{Request} req - Express request object
+ * @param 	{Response} res - Express response object
+ */
 export const authenticateAdminToken = (req, res, next) => {
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];

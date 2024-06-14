@@ -3,6 +3,7 @@
  */
 
 import Booking from '../models/Booking.model.js';
+import Payment from '../models/Payment.model.js';
 import { validationResult } from 'express-validator';
 
 /**
@@ -82,6 +83,7 @@ export const getBooking = async (req, res) => {
 		res.status(500).json({ message: err.message });
 	}
 }
+
 /**
  * Cancel booking of the authentified user
  * 
@@ -101,7 +103,7 @@ export const cancelBooking = async (req, res) => {
 			return res.status(404).json({ message: 'Booking not found' });
 
 		if (booking.User_id != user.id) 
-			return res.status(400).json({ message: 'Cannot cancel other\'s booking' });
+			return res.status(403).json({ message: 'Cannot cancel other\'s booking' });
 
 		booking.Booking_status = 'Cancelled';
 
@@ -112,5 +114,36 @@ export const cancelBooking = async (req, res) => {
 		console.log('Booking cancelled:', updatedBooking);
 	} catch (err) {
 		res.status(400).json({ message: err.message });
+	}
+}
+
+/**
+ * Get payment status
+ * 
+ * @name 	getPaymentStatus
+ * @param 	{Request} req - Express request object
+ * @param 	{Response} res - Express response object
+ * @return	{Object} - Json object containing Payment_status
+ */
+export const getPaymentStatus = async (req, res) => {
+	const { user } = req.payload;
+	const Booking_id = req.params.id;
+
+	try {
+		const booking = await Booking.findById(Booking_id);
+
+		if (!booking)
+			return res.status(404).json({ message: 'Booking not found' });
+		if (booking.User_id != user.id)
+			return res.status(403).json({ message: "You don't have access to this booking" });
+
+		const payment = await Payment.findOne({ Booking_id }).select('Payment_status');
+		
+		if (!payment)
+			return res.status(404).json({ message: 'There is no payment saved for this booking' });
+
+		res.status(200).json(payment);
+	} catch (err) {
+		res.status(500).json({ message: err.message });
 	}
 }
