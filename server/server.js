@@ -2,9 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import authRoutes from './routes/auth.js';
+import authRouter from './routes/authRouter.js';
+import roomsRouter from './routes/roomsRouter.js';
+import bookingsRouter from './routes/bookingsRouter.js';
 import userRouter from './routes/userRoutes.js';
-import { authenticateToken } from './middlewares/auth.js';
 
 dotenv.config(); 
 connectDB(); 
@@ -16,11 +17,10 @@ app.use(express.json());
 app.use(cors()); // Enable CORS
 
 // Routes
+app.use('/api/auth', authRouter);
+app.use('/api/rooms', roomsRouter);
+app.use('/api/bookings', bookingsRouter);
 app.use('/api/user', userRouter);
-app.use('/api/auth', authRoutes);
-app.get('/', authenticateToken, (req, res) => {
-	res.send('Hello, world!');
-});
 
 const PORT = process.env.PORT || 5000;
 
