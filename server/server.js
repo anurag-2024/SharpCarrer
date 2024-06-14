@@ -2,8 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import authRoutes from './routes/authRouter.js';
-import roomsRoutes from './routes/roomsRouter.js';
+import authRouter from './routes/authRouter.js';
+import roomsRouter from './routes/roomsRouter.js';
+import bookingsRouter from './routes/bookingsRouter.js';
 
 dotenv.config(); // load environment variable
 connectDB(); // connect to mongoDB
@@ -15,8 +16,9 @@ app.use(express.json());
 app.use(cors()); // Enable cors
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/rooms', roomsRoutes);
+app.use('/api/auth', authRouter);
+app.use('/api/rooms', roomsRouter);
+app.use('/api/bookings', bookingsRouter);
 
 const PORT = process.env.PORT || 5000;
 
