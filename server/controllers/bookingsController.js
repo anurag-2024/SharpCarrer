@@ -3,7 +3,7 @@
  */
 
 import Booking from '../models/Booking.model.js';
-import Payment from '../models/Payment.model.js';
+import Payment from '../models/PayementModel.model.js';
 import { validationResult } from 'express-validator';
 
 /**
