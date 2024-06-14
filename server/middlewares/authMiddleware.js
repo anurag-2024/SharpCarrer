@@ -25,38 +25,19 @@ export const authenticateToken = (req, res, next) => {
 }
 
 /**
- * Authenticate admin token
+ * Verify if user is admin
  * 
  * @param 	{Request} req - Express request object
  * @param 	{Response} res - Express response object
  */
-export const authenticateAdminToken = (req, res, next) => {
-	const authHeader = req.headers['authorization'];
-	const token = authHeader && authHeader.split(' ')[1];
-	if (token == null) return res.sendStatus(401); // Unauthorized
+export const isAdmin = async (req, res, next) => {
+	const userId = req.payload.user.id;
+	const user = await User.findById(userId);
 
-	jwt.verify(token, process.env.JWT_SECRET, async (err, payload) => {
-		if (err) return res.sendStatus(403); // Forbidden
+	if (!user)
+		return res.status(404).json({ message: 'User not found' });
+	if (user.Role != 'admin')
+		return res.status(403).json({ message: 'Only admins is allowed' });
 
-		try {
-			let { user } = payload;
-			const userId = user.id;
-
-			if (!mongoose.Types.ObjectId.isValid(userId)) {
-	            return res.status(400).json({ message: 'ID' });
-	        }
-
-			user = await User.findById(userId).select("Role");
-
-			if (user && user.Role == 'admin') {
-				req.payload = payload;
-			} else {
-				console.error('Only admin is authorized to add rooms');
-				return res.sendStatus(401); // Unauthorized
-			}
-			next();
-		} catch (err) {
-			console.error(err);
-		}
-	});
+	next();
 }

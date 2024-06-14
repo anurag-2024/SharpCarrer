@@ -1,6 +1,6 @@
 import express from 'express';
 import { check } from 'express-validator';
-import { authenticateToken, authenticateAdminToken } from '../middlewares/authMiddleware.js';
+import { authenticateToken, isAdmin } from '../middlewares/authMiddleware.js';
 import { createRoom, deleteRoom, getRoom, getRooms } from '../controllers/roomsController.js';
 
 const router = express.Router();
@@ -24,7 +24,7 @@ router.get('/:id', authenticateToken, getRoom);
  * 
  * @route 	{POST}
  */
-router.post('/add', authenticateAdminToken, [
+router.post('/add', authenticateToken, isAdmin, [
 	check('Room_type', 'Please enter a room type').not().isEmpty(),
 	check('Description', 'Please enter a description').not().isEmpty(),
 	check('Price', 'Please enter a numeric for price').isNumeric().not().isEmpty(),
@@ -36,7 +36,7 @@ router.post('/add', authenticateAdminToken, [
  * 
  * @route 	{DELETE} /api/rooms/:id/delete
  */
-router.delete('/:id/delete', authenticateAdminToken, deleteRoom);
+router.delete('/:id/delete', authenticateToken, isAdmin, deleteRoom);
 
 
 export default router;
