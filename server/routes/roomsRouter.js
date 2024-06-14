@@ -15,7 +15,7 @@ router.get('/', authenticateToken, getRooms);
 /**
  * Get a room
  * 
- * @route 	{GET} /api/rooms/id
+ * @route 	{GET} /api/rooms/:id
  */
 router.get('/:id', authenticateToken, getRoom);
 
@@ -34,9 +34,9 @@ router.post('/add', authenticateAdminToken, [
 /**
  * Delete room
  * 
- * @route 	{DELETE} /api/rooms/delete/:id
+ * @route 	{DELETE} /api/rooms/:id/delete
  */
-router.delete('/delete/:id', authenticateAdminToken, deleteRoom);
+router.delete('/:id/delete', authenticateAdminToken, deleteRoom);
 
 
 export default router;

@@ -4,7 +4,7 @@
 
 import express from 'express';
 import { check } from 'express-validator';
-import { getBookings, createBooking, cancelBooking } from '../controllers/bookingsController.js';
+import { getBookings, getBooking, createBooking, cancelBooking } from '../controllers/bookingsController.js';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -15,6 +15,13 @@ const router = express.Router();
  * @route 	{GET} /bookings
  */
 router.get('/', authenticateToken, getBookings);
+
+/**
+ * Route to obtains a booking by its id
+ * 
+ * @route 	{GET} /bookings/:id
+ */
+router.get('/:id', authenticateToken, getBooking);
 
 /**
  * Route to add booking
@@ -30,8 +37,8 @@ router.post('/add', authenticateToken, [
 /**
  * Route to cancel booking
  * 
- * @route 	{GET} /bookings/cancel/:id
+ * @route 	{GET} /bookings/:id/cancel
  */
-router.get('/cancel/:id', authenticateToken, cancelBooking);
+router.get('/:id/cancel', authenticateToken, cancelBooking);
 
 export default router;

@@ -57,6 +57,32 @@ export const getBookings = async (req, res) => {
 }
 
 /**
+ * Get booking by its id
+ * 
+ * @name	getBooking
+ * @param 	{Request} req - Express request object
+ * @param 	{Response} res - Express response object
+ * @return 	{Object} - Json object of the booking
+ */
+export const getBooking = async (req, res) => {
+	const { user } = req.payload;
+
+	try {
+		const userId = user.id;
+		const booking = await Booking.findById(req.params.id);
+		
+		if (!booking)
+			return res.status(404).json({ message: 'Booking not found' });
+
+		if (booking.User_id != userId) 
+			return res.status(403).json({ message: "You don't have access to the booking" });
+
+		res.status(200).json(booking);
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
+}
+/**
  * Cancel booking of the authentified user
  * 
  * @name 	cancelBooking
@@ -72,7 +98,7 @@ export const cancelBooking = async (req, res) => {
 		const booking = await Booking.findById(bookingId);
 
 		if (!booking) 
-			return res.status(400).json({ message: 'Booking not found' });
+			return res.status(404).json({ message: 'Booking not found' });
 
 		if (booking.User_id != user.id) 
 			return res.status(400).json({ message: 'Cannot cancel other\'s booking' });
