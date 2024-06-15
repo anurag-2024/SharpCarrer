@@ -3,6 +3,14 @@ import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
 import User from '../models/User.model.js';
 
+/**
+ * Sign up
+ * 
+ * @name 	signup
+ * @param 	{Request} req - Express request object
+ * @param 	{Response} res - Express response object
+ * @return	{Object} -Json object that contains token
+ */
 export const signup = async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -42,6 +50,14 @@ export const signup = async (req, res) => {
 	}
 }
 
+/**
+ * Login
+ * 
+ * @name 	login
+ * @param 	{Request} req - Express request object
+ * @param 	{Response} res - Express response object
+ * @return	{Object} -Json object that contains token
+ */
 export const login = async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -55,8 +71,7 @@ export const login = async (req, res) => {
 		if (!user) {
 			return res.status(400).json({ msg: 'Invalid Credentials' });
 		}
-
-		console.log(user);
+		
 		// verify password
 		const isMatch = await bcrypt.compare(Password, user.Password);
 		if (!isMatch) {

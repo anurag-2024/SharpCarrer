@@ -1,5 +1,14 @@
+/**
+ * @module	User.model
+ */
+
 import mongoose from 'mongoose';
 
+const roleEnum = ['user', 'admin'];
+
+/**
+ * User schema
+ */
 const UserSchema = mongoose.Schema({
 	Name: {
 		type: String,
@@ -35,12 +44,20 @@ const UserSchema = mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	Role: {
+		type: String,
+		enum: roleEnum,
+		default: 'user'
+	},
 	date: {
 		type: Date,
 		default: Date.now
 	},
 });
 
+/**
+ * User
+ */
 const User = mongoose.model('User', UserSchema);
 
 export default User;
