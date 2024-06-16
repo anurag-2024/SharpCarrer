@@ -1,12 +1,12 @@
 import React from "react";
-import "./styles/About.css"; // Make sure to import your CSS file
-import img1 from "../../public/images/img1.jpeg";
-import img2 from "../../public/images/img2.jpeg";
-import img3 from "../../public/images/img3.jpeg";
-import img4 from "../../public/images/img4.jpeg";
-import staff from "../../public/images/staff.png";
-import client from "../../public/images/client.png";
-import room from "../../public/images/room.png";
+import "./styles/About.css"; 
+import img1 from "../assets/images/img1.jpeg";
+import img2 from "../assets/images/img2.jpeg";
+import img3 from "../assets/images/img3.jpeg";
+import img4 from "../assets/images/img4.jpeg";
+import staff from "../assets/images/staff.png";
+import client from "../assets/images/client.png";
+import room from "../assets/images/room.png";
 const About = () => {
   return (
     <div className="about_container">

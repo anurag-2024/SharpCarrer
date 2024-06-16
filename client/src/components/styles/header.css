@@ -4,7 +4,7 @@
     align-items: center;
     padding: 10px 20px;
     background-color: #2e3b4e;
-    flex-wrap: wrap; /* Ensure wrapping on smaller screens */
+    flex-wrap: wrap; 
   }
   
   .header .logo {
@@ -14,18 +14,17 @@
   }
   
   .header .logo img {
-    height: 40px; /* Adjust the size as needed */
+    height: 40px; 
   }
   
   .header nav {
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 1px solid blanchedalmond;
-    border-radius:5px;
   }
   
   .header nav a {
+    cursor: pointer;
     color: white;
     margin: 0 10px;
     text-decoration: none;

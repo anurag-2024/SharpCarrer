@@ -9,11 +9,11 @@ const header = () => {
           <img src={logo} alt="SharpSkill Logo" />
         </a>
         <nav>
-          <a href="#">Home</a>
-          <a href="#">About Us</a>
-          <a href="#">Accommodations</a>
-          <a href="#">Services</a>
-          <a href="#">Contact Us</a>
+          <a>Home</a>
+          <a>About Us</a>
+          <a>Accommodations</a>
+          <a>Services</a>
+          <a>Contact Us</a>
         </nav>
         <div className="auth-buttons">
           <button className="sign-in">Sign In</button>
