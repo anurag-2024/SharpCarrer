@@ -111,9 +111,9 @@ p {
   text-align: start;
   margin-left: 10px;
 }
-.about_text_box h1 {
+.about_text_box .data {
   line-height: 0;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .about_text_box h3 {

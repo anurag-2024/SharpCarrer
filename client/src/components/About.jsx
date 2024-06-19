@@ -1,12 +1,12 @@
 import React from "react";
 import "./styles/About.css";
-import img1 from "../../public/images/img1.jpeg";
-import img2 from "../../public/images/img2.jpeg";
-import img3 from "../../public/images/img3.jpeg";
-import img4 from "../../public/images/img4.jpeg";
-import staff from "../../public/images/staff.png";
-import client from "../../public/images/client.png";
-import room from "../../public/images/room.png";
+import img1 from "../assets/images/img1.jpeg";
+import img2 from "../assets/images/img2.jpeg";
+import img3 from "../assets/images/img3.jpeg";
+import img4 from "../assets/images/img4.jpeg";
+import staff from "../assets/images/staff.png";
+import client from "../assets/images/client.png";
+import room from "../assets/images/room.png";
 
 const About = () => {
   return (
@@ -63,8 +63,8 @@ const About = () => {
             <img src={staff} alt="Staff" />
           </div>
           <div className="about_texts">
-            <h1>Staff</h1>
-            <h1>2345</h1>
+            <h1 className="data">Staff</h1>
+            <h1 className="data">2345</h1>
           </div>
         </div>
         <div className="about_box_lower2">
@@ -72,8 +72,8 @@ const About = () => {
             <img src={client} alt="Client" />
           </div>
           <div className="about_texts">
-            <h1>Client</h1>
-            <h1>2345</h1>
+            <h1 className="data">Client</h1>
+            <h1 className="data">2345</h1>
           </div>
         </div>
         <div className="about_box_lower3">
@@ -81,8 +81,8 @@ const About = () => {
             <img src={room} alt="Room" />
           </div>
           <div className="about_texts">
-            <h1>Room</h1>
-            <h1>2345</h1>
+            <h1 className="data">Room</h1>
+            <h1 className="data">2345</h1>
           </div>
         </div>
       </div>

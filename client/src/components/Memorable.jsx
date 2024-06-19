@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles/Memorable.css";
-import memorable from '../../public/images/memorable.jpg';
-import img1 from '../../public/images/img1.jpeg';
+import memorable from '../assets/images/memorable.jpg';
+import img1 from '../assets/images/img1.jpeg';
 
 const Memorable = () => {
   const [reviews, setReviews] = useState([

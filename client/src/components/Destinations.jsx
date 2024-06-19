@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/Destinations.css';
-import defaultImage from '../../public/images/img1.jpeg';
+import defaultImage from '../assets/images/img1.jpeg';
 
 const Destinations = () => {
   return (
