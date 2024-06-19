@@ -1,0 +1,59 @@
+.acomodation_header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.acomodation_container {
+    display: flex;
+    justify-content: space-evenly;
+    height: 600px;
+}
+
+.acomodation_firstC, .acomodation_secondC, .acomodation_thirdC {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+}
+
+.acomodation_firstC .img1, .acomodation_secondC .img2, .acomodation_thirdC .img3 {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.acomodation_firstC .img1{
+    margin-bottom: 10%;
+}
+.acomodation_secondC .img2{
+    margin-top: 10%;
+}
+.acomodation_thirdC .img3{
+    margin-bottom: 10%;
+}
+.acomodation_firstC .img1 img, .acomodation_secondC .img2 img, .acomodation_thirdC .img3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.acomodation_firstC .text1, .acomodation_secondC .text2, .acomodation_thirdC .text3 {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #154858;
+    font-size: 1.2rem;
+    padding: 10px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.acomodation_firstC .text1 p, .acomodation_secondC .text2 p, .acomodation_thirdC .text3 p {
+    margin: 5px 0;
+}

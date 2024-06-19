@@ -1,0 +1,119 @@
+
+  /* Main container styling */
+  .dest_d_container {
+    width: 100%;
+    height: 100%;
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .dest_d_title {
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .dest_upper_cont {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    width: 80%;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    height: 350px; /* Fixed height for upper container */
+  }
+  
+  .dest_upper_cont::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .dest_box {
+    flex: 0 0 calc(21%);
+    height: 300px;
+    padding: 15px;
+    background-color: rgb(189, 196, 201);
+    margin: 10px;
+    scroll-snap-align: start;
+  }
+  
+  .dest_box img {
+    width: 100%;
+    height: 65%;
+  }
+  
+  .dest_box h1 {
+    font-size: 2.0rem;
+    margin-top: 30px;
+  }
+  
+  .dest_low_cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 90%; 
+    height: 400px;
+  }
+  
+  .dest_texts {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Full width */
+  }
+  
+  .dest_left {
+    font-weight: bolder;
+    font-size: 1.5rem;
+  }
+  
+  .dest_right {
+    font-size: 1rem;
+  }
+  
+  .dest_items {
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%; /* Full width */
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+  
+  .dest_items::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar for Chrome/Safari */
+  }
+  
+  .dest_item {
+    flex: 0 0 calc(20% - 20px); /* Adjust width to show 5 items in one row */
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+  }
+  
+  .dest_item img {
+    width: 100%;
+    height: 250px; /* Fixed height for images */
+    object-fit: cover; /* Ensure images maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .dest_item h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    text-align: center; /* Center align the text within the item */
+  }
+  
