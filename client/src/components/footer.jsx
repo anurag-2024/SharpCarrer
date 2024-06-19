@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles/Footer.css";
+import "./styles/footer.css";
 import { FaMapMarkerAlt, FaTwitter, FaYoutube, FaFacebook, FaInstagram } from 'react-icons/fa';
 import location from '../assets/images/location.png'
 const Footer = () => {
