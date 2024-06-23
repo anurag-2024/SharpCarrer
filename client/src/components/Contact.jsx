@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles/Contact.css";
 import { FaMapMarkerAlt, FaTwitter, FaYoutube, FaFacebook, FaInstagram } from 'react-icons/fa';
 import location from '../../public/images/location.png'
+import logo from '../assets/logo.png';
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -30,7 +31,7 @@ const Contact = () => {
             </div>
             <div className="texts">
                 <div className="header">
-                    <h1>SharpSkill</h1>
+                    <h1>𝐒ɦα𝗋ρ𝐒𝗄𝗂ᥣᥣ</h1>
                 </div>
                 <div className="social_media">
                     <a href=""><FaTwitter size={30} /></a>
@@ -68,10 +69,10 @@ const Contact = () => {
               </form>
             </div>
             <div className="location_info">
-                <h1>CONTACT-</h1>
-                <p>123 Street, New Delhi, India</p>
-                <p>+91 9798000239</p>
-                <p>priyanshuraj2552@gmail.com</p>
+                <h1>𝙲𝙾𝙽𝚃𝙰𝙲𝚃-</h1>
+                <p>𝟷𝟸𝟹 sᴛʀᴇᴇᴛ, ɴᴇᴡ ᴅᴇʟʜɪ, ɪɴᴅɪᴀ</p>
+                <p>+𝟿𝟷 𝟿𝟾𝟽𝟼𝟻𝟺𝟹𝟸𝟷𝟷</p>
+                <p>𝚜𝚑𝚊𝚙𝚛𝚜𝚔𝚒𝚕𝚕@𝚐𝚖𝚊𝚒𝚕.𝚌𝚘𝚖</p>
             </div>
         </div>
      </div>
