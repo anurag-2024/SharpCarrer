@@ -39,21 +39,15 @@ body {
 }
 .services_header_r {
     position: absolute;
-    right: 37%;
+    right: 35%;
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.services_header_l, h1 {
+.services_header_l h1, .services_header_r h1 {
     margin: 0 20px;
     font-size: 3rem;
-    
-}
-.services_header_r, h1 {
-    margin: 0 20px;
-    font-size: 3rem;
-    
 }
 
 .left_hr, .right_hr {
@@ -109,12 +103,25 @@ body {
     top: 10%;
 }
 
-.services_box_u {
+.services_box_u, .services_box_d {
     height: 40%;
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: bolder;
+    color: #154858;
+    font-size: 1.2rem;
 }
 
 .services_box_d {
-    height: 40%;
     background-color: #154858;
+    color: #ffffff;
+}
+
+.services_box_u p, .services_box_d p {
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: center;
 }

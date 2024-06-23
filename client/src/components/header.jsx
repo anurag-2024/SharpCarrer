@@ -1,27 +1,28 @@
-import React from 'react'
-import './styles/header.css'
+import React from 'react';
+import './styles/header.css';
 import logo from '../assets/logo.png';
-const header = () => {
+
+const Header = () => {
   return (
     <>
-      <header className="header">
-        <a href="#" className="logo">
+      <header className="header_u">
+        <a href="#" className="logo_u">
           <img src={logo} alt="SharpSkill Logo" />
         </a>
         <nav>
-          <a>Home</a>
-          <a>About Us</a>
-          <a>Accommodations</a>
-          <a>Services</a>
-          <a>Contact Us</a>
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#accommodations">Accommodations</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact Us</a>
         </nav>
-        <div className="auth-buttons">
-          <button className="sign-in">Sign In</button>
-          <button className="sign-up">Sign Up</button>
+        <div className="auth-buttons_u">
+          <button className="sign-in_u">Sign In</button>
+          <button className="sign-up_u">Sign Up</button>
         </div>
       </header>
     </>
-  )
+  );
 }
 
-export default header
+export default Header;
