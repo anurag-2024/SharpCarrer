@@ -1,34 +1,48 @@
-import React from 'react';
+import React,{useState} from 'react';
+import Typed from 'typed.js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const HeroSection = () => {
-  const handleBooking = () => {
-    const destination = document.querySelector('input[name="destination"]').value;
-    const checkIn = document.querySelector('input[name="checkin"]').value;
-    const checkOut = document.querySelector('input[name="checkout"]').value;
-    alert(`Booking Details:\nDestination: ${destination}\nCheck-In: ${checkIn}\nCheck-Out: ${checkOut}`);
-  };
+  const [destination, setDestination] = useState('');
   const video = 'https://gateway.pinata.cloud/ipfs/QmQs9Na5A4C5kBXtUowAP6bdpsLTXSyru885f3cKdovKBn';
+  const el = React.useRef(null);
+  React.useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['<i>Hotels</i>', '<i>Restaurants</i>', '<i>Resorts</i>', '<i>Lounges</i>'],
+      typeSpeed: 60,
+      backSpeed: 60,
+      loop: true,
+      cursorChar: '|',
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!destination) {
+      toast.error('Please enter a destination');
+      return;
+    }
+    console.log(destination);
+  }
   return (
     <section className="hero-section">
-      <video autoPlay muted loop  id="background-video">
+      <video autoPlay muted loop id="background-video">
         <source src={video} type="video/mp4" />
       </video>
       <div className="hero-content">
-        <h1>Welcome to <br /> The SharpSkill Resort and Hotel Chains</h1>
-        <div className="search-bar">
-          <div className="input-container">
-            <i className="fas fa-map-marker-alt"></i>
-            <input type="text" name="destination" placeholder="Destination" />
-          </div>
-          <div className="input-container">
-            <label htmlFor="checkin" className="input-label">Check-In</label>
-            <input type="date" id="checkin" name="checkin" />
-          </div>
-          <div className="input-container">
-            <label htmlFor="checkout" className="input-label">Check-Out</label>
-            <input type="date" id="checkout" name="checkout" />
-          </div>
-          <button onClick={handleBooking}>Book Now</button>
-        </div>
+        <h1>
+          <span className='hero-content-heading'>Welcome </span> to <br /> The SharpSkill 
+          <span ref={el} className='changing-text' />
+        </h1>
+      </div>
+      <div className="search-bar">
+        <form className='form' onSubmit={handleSubmit}>
+            <input type="text" name="destination" placeholder="Where do you want to go?" onChange={(e)=>{setDestination(e.target.value)}} />
+          <button type="submit">Search</button>
+        </form>
       </div>
     </section>
   );
