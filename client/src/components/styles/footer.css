@@ -34,10 +34,10 @@ body {
   }
   
   .contact_left_text {
-    height: 20%;
+    height: 15%;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
     width: 100%;
   }
   
@@ -48,16 +48,15 @@ body {
   }
   
   .contact_logo img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+    width: 18rem;
+    height: 4rem;
   }
   
   .texts {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    margin-left:1rem;
   }
   
   .header {
