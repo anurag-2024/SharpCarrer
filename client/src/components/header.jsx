@@ -1,27 +1,28 @@
-import React from 'react'
-import './styles/header.css'
+import React from 'react';
+import './styles/header.css';
 import logo from '../assets/logo.png';
-const header = () => {
+import { Link } from 'react-router-dom';
+const Header = () => {
   return (
     <>
-      <header className="header">
-        <a href="#" className="logo">
+      <header className="header_u">
+        <Link to="/" className="logo_u">
           <img src={logo} alt="SharpSkill Logo" />
-        </a>
+        </Link>
         <nav>
-          <a href="#">Home</a>
-          <a href="#">About Us</a>
-          <a href="#">Accommodations</a>
-          <a href="#">Services</a>
-          <a href="#">Contact Us</a>
+          <Link to="/">Home</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/accomodation">Accommodations</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/reviews">Reviews</Link>
         </nav>
-        <div className="auth-buttons">
-          <button className="sign-in">Sign In</button>
-          <button className="sign-up">Sign Up</button>
+        <div className="auth-buttons_u">
+          <button className="sign-in_u">Sign In</button>
+          <button className="sign-up_u">Sign Up</button>
         </div>
       </header>
     </>
-  )
+  );
 }
 
-export default header
+export default Header;
