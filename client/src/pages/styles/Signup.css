@@ -1,0 +1,19 @@
+.signup-container{
+    display: flex;
+    height: 100vh;
+  }
+  
+  .signup-form{
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .background-image {
+    flex: 1;
+    background-image: url('path-to-your-resort-image.jpg');
+    background-size: cover;
+    background-position: center;
+  }

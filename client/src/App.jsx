@@ -7,6 +7,8 @@ import About from "./components/About"
 import Acomodation from "./components/Acomodation"
 import Services from "./components/Services"
 import Reviews from "./components/Memorable"
+import Signin from './pages/Signin'
+import Signup from './pages/Signup'
 function App() {
   return (
       <BrowserRouter>
@@ -17,6 +19,8 @@ function App() {
           <Route path="/accomodation" element={<Acomodation/>} />
           <Route path="/services" element={<Services/>} />
           <Route path="/reviews" element={<Reviews/>} />
+          <Route path="/signin" element={<Signin/>} />
+          <Route path="/signup" element={<Signup/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>
