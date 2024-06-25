@@ -3,6 +3,9 @@ import "./styles/Explore.css";
 import img1 from "../assets/images/mumbai_e.jpg";
 import img2 from "../assets/images/delhi_e.jpg";
 import img3 from "../assets/images/bangalore_e.jpg";
+import img4 from "../assets/images/hotel_1.jpg";
+import img5 from "../assets/images/hotel_2.jpg";
+import img6 from "../assets/images/hotel_3.jpg";
 
 const Explore = () => {
   const [hotels, setHotels] = useState([
@@ -10,19 +13,19 @@ const Explore = () => {
       name: "Evara Greens",
       rating: 4.2,
       location: "Mumbai",
-      image: img1,
+      image: img5,
     },
     {
       name: "The Caravell",
       rating: 4.7,
       location: "Mumbai",
-      image: img2,
+      image: img6,
     },
     {
       name: "The Paradise",
       rating: 4.5,
       location: "Mumbai",
-      image: img3,
+      image: img4,
     },
   ]);
 
