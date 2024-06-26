@@ -1,22 +1,26 @@
-// SignUpPage.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './styles/Signup.css'; // You'll need to create this CSS file
+import { Link, useNavigate } from 'react-router-dom';
+import './styles/Signup.css'; // Ensure this CSS file exists
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your sign up logic here
+    // Add your sign-up logic here
     console.log('Sign up with:', email, password);
+  };
+
+  const handleClose = () => {
+    navigate('/');
   };
 
   return (
     <div className="signup-container">
       <div className="signup-form">
-        <button className="close-button">×</button>
+        <button className="close-button" onClick={handleClose}>×</button>
         <h1 className="logo">The SharpSkill</h1>
         <h2>Sign up for Best Deals</h2>
         <button className="google-button">Continue with Google</button>
