@@ -13,7 +13,7 @@ import Explore from "./pages/Explore"
 function App() {
   return (
       <BrowserRouter>
-        
+        <Header/>
           <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/about" element={<About/>} />
@@ -24,7 +24,7 @@ function App() {
           <Route path="/signup" element={<Signup/>} />
           <Route path="/explore" element={<Explore/>} />
         </Routes>
-       
+       <Footer/>
       </BrowserRouter>
   )
 }

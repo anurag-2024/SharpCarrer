@@ -25,7 +25,7 @@ const Signup = () => {
         <h2>Sign up for Best Deals</h2>
         <button className="google-button">Continue with Google</button>
         <div className="divider">Or Sign up with Email</div>
-        <form onSubmit={handleSubmit}>
+        <form className='authform' onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Enter your email"

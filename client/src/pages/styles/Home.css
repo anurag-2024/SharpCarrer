@@ -72,6 +72,7 @@ body {
   border: none;
   border-radius: 25px 0 0 25px;
   outline: none;
+  margin-top: 1rem;
 }
 
 .form button {
@@ -82,6 +83,7 @@ body {
   cursor: pointer;
   padding: 20px 40px;
   font-size: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
   transition: background-color 0.3s ease;
 }
