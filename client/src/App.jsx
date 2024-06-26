@@ -9,11 +9,12 @@ import Services from "./components/Services"
 import Reviews from "./components/Memorable"
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
+import Explore from "./pages/Explore"
 function App() {
   return (
       <BrowserRouter>
-         <Header/>
-        <Routes>
+        
+          <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/accomodation" element={<Acomodation/>} />
@@ -21,8 +22,9 @@ function App() {
           <Route path="/reviews" element={<Reviews/>} />
           <Route path="/signin" element={<Signin/>} />
           <Route path="/signup" element={<Signup/>} />
+          <Route path="/explore" element={<Explore/>} />
         </Routes>
-        <Footer/>
+       
       </BrowserRouter>
   )
 }
