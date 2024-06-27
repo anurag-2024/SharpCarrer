@@ -27,26 +27,114 @@ const Explore = () => {
       location: "Mumbai",
       image: img4,
     },
+    {
+      name: "Evara Greens",
+      rating: 4.2,
+      location: "Mumbai",
+      image: img5,
+    },
+    {
+      name: "The Caravell",
+      rating: 4.7,
+      location: "Mumbai",
+      image: img6,
+    },
+    {
+      name: "The Paradise",
+      rating: 4.5,
+      location: "Mumbai",
+      image: img4,
+    },
+    {
+      name: "Evara Greens",
+      rating: 4.2,
+      location: "Mumbai",
+      image: img5,
+    },
+    {
+      name: "The Caravell",
+      rating: 4.7,
+      location: "Mumbai",
+      image: img6,
+    },
+    {
+      name: "The Paradise",
+      rating: 4.5,
+      location: "Mumbai",
+      image: img4,
+    },
+    {
+      name: "Evara Greens",
+      rating: 4.2,
+      location: "Mumbai",
+      image: img5,
+    },
+    {
+      name: "The Caravell",
+      rating: 4.7,
+      location: "Mumbai",
+      image: img6,
+    },
+    {
+      name: "The Paradise",
+      rating: 4.5,
+      location: "Mumbai",
+      image: img4,
+    },
+    {
+      name: "Evara Greens",
+      rating: 4.2,
+      location: "Mumbai",
+      image: img5,
+    },
+    {
+      name: "The Caravell",
+      rating: 4.7,
+      location: "Mumbai",
+      image: img6,
+    },
+    {
+      name: "The Paradise",
+      rating: 4.5,
+      location: "Mumbai",
+      image: img4,
+    },
+    {
+      name: "Evara Greens",
+      rating: 4.2,
+      location: "Mumbai",
+      image: img5,
+    }
   ]);
+
+  const [page, setPage] = useState(0);
+  const hotelsPerPage = 8;
+  const pageCount = Math.ceil(hotels.length / hotelsPerPage);
+
+  const getCurrentHotels = () => {
+    const startIndex = page * hotelsPerPage;
+    const endIndex = startIndex + hotelsPerPage;
+    return hotels.slice(startIndex, endIndex);
+  };
 
   return (
     <div className="explore_container">
       <div className="explore_header">
         <div className="img1">
           <img src={img1} alt="Mumbai" />
+          <p>Explore</p>
         </div>
         <div className="img2">
           <img src={img2} alt="Delhi" />
+          <p className="center">All</p>
         </div>
         <div className="img3">
           <img src={img3} alt="Bangalore" />
+          <p>Hotels</p>
         </div>
       </div>
       <div className="explore_hotels">
-        <div className="arrow">
-          <p>&lt;</p>
-        </div>
-        {hotels.map((hotel, index) => (
+        {getCurrentHotels().map((hotel, index) => (
           <div
             className={`hotel ${index === 1 ? "middle_hotel" : ""}`}
             key={index}
@@ -69,7 +157,7 @@ const Explore = () => {
                   <p>{hotel.location}</p>
                 </div>
                 <div>
-                  <button onClick={() => (window.location.href = "/booking")}>
+                  <button>
                     Explore
                   </button>
                 </div>
@@ -77,9 +165,17 @@ const Explore = () => {
             </div>
           </div>
         ))}
-        <div className="arrow">
-          <p>&gt;</p>
-        </div>
+      </div>
+      <div className="pagination">
+        {[...Array(pageCount).keys()].map(number => (
+          <span 
+            key={number} 
+            onClick={() => setPage(number)} 
+            className={page === number ? "active__page" : ""}
+          >
+            {number + 1}
+          </span>
+        ))}
       </div>
     </div>
   );

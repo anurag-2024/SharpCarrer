@@ -1,6 +1,10 @@
+@import '../../mixins.scss';
 .explore_container {
-    height: 100vh;
-  }
+    height: 100%;
+    @include md{
+      height: 100%;
+    }
+
   
   .explore_header {
     height: 20%;
@@ -11,7 +15,26 @@
       height: 100%;
       width: 33.3%;
       position: relative;
-  
+      p{
+        position: absolute;
+        top: 4rem;
+        left: 10rem;
+        color: #ccc;
+        font-size: 3rem;
+        font-family:'Courier New', Courier, monospace;
+        font-weight: 600;
+        align-items: center;
+        @include md{
+           left: 0;
+           font-size: 1.5rem;
+        }
+      }
+      .center{
+        left: 14rem;
+        @include md{
+          left: 2rem;
+        }
+      }
       img {
         height: 230px;
         width: 100%;
@@ -21,12 +44,16 @@
   }
   
   .explore_hotels {
-    height: 350px;
+    height: 100%;
     margin-top: 180px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-  
+    margin: 10rem 5% 3rem 5%;
+    @include md{
+      margin: 5rem 0 2rem 0;
+    }
     .hotel {
       height: 85%;
       width: 22%;
@@ -34,22 +61,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      background-color: #bcd1ab;
+      background-color: #ffffff;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
       box-sizing: border-box;
-  
-      &.middle_hotel {
-        height: 100%;
-      }
+      margin: 1rem;
+     @include md{
+      width: 100%;
+      margin: 1rem 0;
+     }
   
       .hotel_image {
         height: 70%;
         width: 100%;
   
         img {
-          height: 100%;
+          height: 15rem;
           width: 100%;
+          border-radius: 1rem 1rem 0 0;
           object-fit: cover;
         }
       }
@@ -59,7 +88,12 @@
         flex-direction: column;
         width: 100%;
         height: 30%;
-  
+        border-radius: 0 0 1rem 1rem;
+        background-color: #bcd1ab;
+        padding: 1rem 0;
+        @include md{
+          padding: 1rem 0;
+        }
         .upper, .lower {
           width: 100%;
           height: 50%;
@@ -102,7 +136,10 @@
           cursor: pointer;
           border-radius: 5px;
           transition: background-color 0.3s ease;
-  
+          margin-top: 0.5rem;
+           @include md{
+            margin-top: 0.5rem;
+           }
           &:hover {
             background-color: #ddd;
           }
@@ -110,7 +147,36 @@
       }
     }
   }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: center;
+    span {
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      margin: 0 5px;
   
+      &:hover {
+        background-color: #f0f0f0;
+      }
+  
+      &.active__page {
+        background-color: #000000;
+        color: #fff;
+        border-color: #09090a;
+  
+        &:hover {
+          background-color: #000000;
+        }
+      }
+    }
+  }
+  
+}
   // Media Queries for Responsiveness
   @media screen and (max-width: 1200px) {
     .explore_header .img1, .img2, .img3 {
@@ -150,11 +216,6 @@
   
     .explore_hotels .hotel {
       width: 100%;
-      margin-bottom: 15px;
-    }
-  
-    .explore_hotels {
-      margin-top: 50px;
     }
   }
   
