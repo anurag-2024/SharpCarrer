@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles/Explore.css";
+import "./styles/Explore.scss";
 import img1 from "../assets/images/mumbai_e.jpg";
 import img2 from "../assets/images/delhi_e.jpg";
 import img3 from "../assets/images/bangalore_e.jpg";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles/Memorable.css";
+import "./styles/Memorable.scss";
 import memorable from '../assets/images/memorable.jpg';
 import img1 from '../assets/images/img1.jpeg';
 

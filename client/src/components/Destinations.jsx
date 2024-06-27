@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/Destinations.css';
+import './styles/Destinations.scss';
 import { topDestinations, internationalStays } from '../data/data'; // Adjust the path as necessary
 import Marquee from 'react-fast-marquee';
 const Destinations = () => {

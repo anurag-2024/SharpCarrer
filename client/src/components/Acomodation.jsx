@@ -2,7 +2,7 @@ import React from "react";
 import accomodation_1 from "../assets/images/accomodation_1.jpg";
 import accomodation_2 from "../assets/images/accomodation_2.jpg";
 import accomodation_3 from "../assets/images/accomodation_3.jpg";
-import './styles/Acomodation.css'
+import './styles/Acomodation.scss'
 
 const Acomodation = () => {
   return (

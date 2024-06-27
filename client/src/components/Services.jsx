@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Services.css";
+import "./styles/Services.scss";
 import HomeIcon from '@mui/icons-material/Home';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import WifiIcon from '@mui/icons-material/Wifi';

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles/footer.css";
+import "./styles/footer.scss";
 import { FaMapMarkerAlt, FaTwitter, FaYoutube, FaFacebook, FaInstagram } from 'react-icons/fa';
 import logo from '../assets/logo.png'
 import { Link } from "react-router-dom";

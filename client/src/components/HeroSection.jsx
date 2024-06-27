@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import Typed from 'typed.js';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './styles/HeroSection.scss';
 const HeroSection = () => {
   const [destination, setDestination] = useState('');
   const video = 'https://gateway.pinata.cloud/ipfs/QmQs9Na5A4C5kBXtUowAP6bdpsLTXSyru885f3cKdovKBn';

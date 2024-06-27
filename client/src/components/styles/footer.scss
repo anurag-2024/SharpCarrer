@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.contact_container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  margin-top: 3%;
+  background-color: #154858;
+
+  .contact_left {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-right: 40px;
+
+    .contact_location {
+      margin-bottom: 20px;
+      height: 50%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .contact_left_text {
+      height: 15%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+
+      .contact_logo {
+        display: flex;
+        align-items: flex-start;
+        height: 80%;
+
+        img {
+          width: 18rem;
+          height: 4rem;
+        }
+      }
+
+      .texts {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 1rem;
+        
+        .header {
+          margin-bottom: 10px;
+          background: none;
+          color: white;
+        }
+
+        .social_media {
+          a {
+            margin-right: 20px;
+          }
+
+          svg {
+            width: 30px;
+            height: 30px;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .contact_right {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .contact_form {
+      height: 47.2%;
+      background-color: #799889;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 30px;
+      width: 90%;
+      margin-bottom: 10px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        input,
+        textarea {
+          margin-bottom: 20px;
+          padding: 10px;
+          border-radius: 5px;
+        }
+
+        textarea {
+          height: 150px; /* Increased height of the textarea */
+        }
+
+        button {
+          width: 100%;
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: #007BFF;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .location_info {
+      display: flex;
+      margin-top: 10px;
+      width: 100%;
+      height: 20%;
+      color: white;
+
+      h1 {
+        margin-bottom: 9px;
+      }
+    }
+  }
+}
