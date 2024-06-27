@@ -54,7 +54,7 @@ const Memorable = () => {
       </div>
       <div className="memorable_container">
         <div className="memorable_left">
-          <p>&lt;</p>
+          <p className="arrow">&lt;</p>
           <div className="memorable_reviews">
             {reviews.map((review, index) => (
               <div key={index} className="review">
@@ -64,7 +64,7 @@ const Memorable = () => {
               </div>
             ))}
           </div>
-          <p>&gt;</p>
+          <p className="arrow">&gt;</p>
         </div>
         <div className="memorable_right">
           <img src={memorable} alt="Memorable" />

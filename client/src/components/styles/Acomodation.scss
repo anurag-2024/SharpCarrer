@@ -1,6 +1,20 @@
+@import '../../mixins.scss';
 .acomodation_header {
     text-align: center;
     margin-bottom: 60px;
+    @include md{
+      margin-top:8rem;
+      &::before{
+        content: "";
+        display: block;
+        width: 90%;
+        height: 2px;
+        left: 5%;
+        background-color: rgb(79, 78, 78);
+        position: relative;
+        top: 4rem;
+      }
+    }
   }
   
   .acomodation_container {
