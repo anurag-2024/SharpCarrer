@@ -68,7 +68,7 @@ const Footer = () => {
               </form>
             </div>
             <div className="location_info">
-                <h1>CONTACT-</h1>
+                <h1>CONTACT:</h1>
                 <div>
                 <p>123 Street, New Delhi, India</p>
                 <p>+91 9798xxxxxx</p>

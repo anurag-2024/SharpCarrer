@@ -8,6 +8,7 @@
   background-color: #154858;
    @include md{
     flex-direction: column;
+    height: 100%;
    }
   .contact_left {
     width: 30%;
@@ -17,19 +18,27 @@
     align-items: flex-start;
     flex-direction: column;
     margin-right: 40px;
+    @include md{
+      width: 100%;
+      flex-direction: column;
+    }
     .contact_location {
       margin-bottom: 20px;
       height: 50%;
       @include md{
-        height: 1rem;
+        margin: 1rem 4.5rem;
+        display: flex;
+          width: 12rem;
+          height: 12rem;
+          justify-content: center;
+          align-items: center;
       }
       iframe {
         width: 100%;
         height: 100%;
         border: none;
         @include md{
-          width: 12rem;
-          height: 12rem;
+          
         }
       } 
     }
@@ -45,10 +54,16 @@
         display: flex;
         align-items: flex-start;
         height: 80%;
-
+         @include md{
+          height: 50%;
+         }
         img {
           width: 18rem;
           height: 4rem;
+          @include md{
+            height: 3rem;
+            width: 15rem;
+          }
         }
       }
 
@@ -57,7 +72,9 @@
         flex-direction: column;
         justify-content: center;
         margin-left: 1rem;
-        
+        @include md{
+          margin-bottom: 1rem;
+        }
         .header {
           margin-bottom: 10px;
           background: none;
@@ -73,6 +90,10 @@
             width: 30px;
             height: 30px;
             color: white;
+            @include md{
+              width: 1.5rem;
+              height: 1.5rem;
+            }
           }
         }
       }
@@ -86,7 +107,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+     @include md{
+      width: 90%;
+     }
     .contact_form {
       height: 47.2%;
       background-color: #799889;
@@ -97,7 +120,11 @@
       padding: 10px 30px;
       width: 90%;
       margin-bottom: 10px;
-
+      @include md{
+        width: 100%;
+        padding: 10px;
+        margin-left: 30px;
+      }
       form {
         display: flex;
         flex-direction: column;
@@ -133,7 +160,12 @@
       width: 100%;
       height: 20%;
       color: white;
-
+      @include md{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
       h1 {
         margin-bottom: 9px;
       }
