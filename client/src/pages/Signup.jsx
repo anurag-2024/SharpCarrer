@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/Signup.css'; // Ensure this CSS file exists
+import img2 from '../assets/images/signin.jpg'
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -44,7 +45,9 @@ const Signup = () => {
         </form>
         <p>Have an account? <Link to="/signin">Sign In</Link></p>
       </div>
-      <div className="background-image"></div>
+      <div className="background-image-Signin">
+        <img src={img2} alt="" />
+      </div>
     </div>
   );
 };
