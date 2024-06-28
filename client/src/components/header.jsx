@@ -20,7 +20,7 @@ const Header = () => {
           </div>}
         </div>
         {menu && 
-        <>
+        <div className='menu'> 
           <nav>
           <Link to="/">Home</Link>
           <Link to="/about">About Us</Link>
@@ -33,7 +33,7 @@ const Header = () => {
           <Link to="/signin"><button className="sign-in_u">Sign In</button></Link>
           <Link to="/signup"><button className="sign-up_u">Sign Up</button></Link>
         </div>
-        </>
+        </div>
         }
       </header>
     </>

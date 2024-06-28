@@ -1,4 +1,4 @@
-@import '../../mixins.scss';
+@import "../../mixins.scss";
 .header_u {
   position: sticky;
   top: 0;
@@ -10,74 +10,78 @@
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 100;
-.header-main{
-  display: flex;
-  justify-content: space-between;
-  .logo_u {
-    img {
-      height: 40px;
+  .header-main {
+    display: flex;
+    justify-content: space-between;
+    .logo_u {
+      img {
+        height: 40px;
+      }
+    }
+    .menu-icon_u {
+      margin-left: 3rem;
+      margin-top: 0.2rem;
+      font-size: 1.5rem;
     }
   }
-  .menu-icon_u{
-    margin-left: 3rem;
-    margin-top: 0.2rem;
-    font-size: 1.5rem;
-  }
-}
-
-  nav {
+  .menu {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
     @include md{
-      z-index: 999;
+      flex-direction: column;
+      align-items: flex-start;
     }
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-      font-family: 'Arial, sans-serif';
-      margin: 0 10px;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: #ff5a5f;
-      }
-    }
-  }
-
-  .auth-buttons_u {
-    display: flex;
-    gap: 10px;
-
-    button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-family: 'Arial, sans-serif';
-      transition: background-color 0.3s ease;
-
-      &.sign-in_u {
-        background-color: #ff5a5f;
-        color: white;
+    nav {
+      display: flex;
+      gap: 20px;
+      margin-right: 5rem;
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        font-family: "Arial, sans-serif";
+        margin: 0 10px;
+        transition: color 0.3s ease;
 
         &:hover {
-          background-color: #e04e50;
+          color: #ff5a5f;
         }
       }
+    }
 
-      &.sign-up_u {
-        background-color: #fff;
-        color: #ff5a5f;
+    .auth-buttons_u {
+      display: flex;
+      gap: 10px;
 
-        &:hover {
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Arial, sans-serif";
+        transition: background-color 0.3s ease;
+
+        &.sign-in_u {
           background-color: #ff5a5f;
-          color: #fff;
+          color: white;
+
+          &:hover {
+            background-color: #e04e50;
+          }
+        }
+
+        &.sign-up_u {
+          background-color: #fff;
+          color: #ff5a5f;
+
+          &:hover {
+            background-color: #ff5a5f;
+            color: #fff;
+          }
         }
       }
-      
     }
-
   }
 
   @media (max-width: 821px) {
@@ -88,21 +92,25 @@
         height: 35px;
       }
     }
-    nav {
-      margin: 1.5rem 0;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 15px;
+    .menu {
+      display: flex;
       z-index: 999;
-    }
+      nav {
+        margin: 1.5rem 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        z-index: 999;
+      }
 
-    .auth-buttons_u {
-      flex-direction: column;
-      width: 100%;
-      gap: 5px;
-      z-index: 999;
-      button {
+      .auth-buttons_u {
+        flex-direction: column;
         width: 100%;
+        gap: 5px;
+        z-index: 999;
+        button {
+          width: 19rem;
+        }
       }
     }
   }
