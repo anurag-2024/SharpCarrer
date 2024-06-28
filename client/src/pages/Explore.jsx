@@ -6,7 +6,7 @@ import img3 from "../assets/images/bangalore_e.jpg";
 import img4 from "../assets/images/hotel_1.jpg";
 import img5 from "../assets/images/hotel_2.jpg";
 import img6 from "../assets/images/hotel_3.jpg";
-
+import Typed from 'typed.js';
 const Explore = () => {
   const [hotels, setHotels] = useState([
     {
@@ -106,7 +106,20 @@ const Explore = () => {
       image: img5,
     }
   ]);
+  const el = React.useRef(null);
+  React.useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['<i>Hotels</i>', '<i>Restaurants</i>', '<i>Resorts</i>', '<i>Lounges</i>'],
+      typeSpeed: 60,
+      backSpeed: 60,
+      loop: true,
+      cursorChar: '.',
+    });
 
+    return () => {
+      typed.destroy();
+    };
+  }, []);
   const [page, setPage] = useState(0);
   const hotelsPerPage = 8;
   const pageCount = Math.ceil(hotels.length / hotelsPerPage);
@@ -130,7 +143,7 @@ const Explore = () => {
         </div>
         <div className="img3">
           <img src={img3} alt="Bangalore" />
-          <p>Hotels</p>
+          <p ref={el}></p>
         </div>
       </div>
       <div className="explore_hotels">
