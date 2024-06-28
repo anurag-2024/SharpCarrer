@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './styles/Signin.css'; // You'll need to create this CSS file
+import './styles/Signin.css'; 
+import img2 from '../assets/images/signin.jpg'
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -44,7 +45,9 @@ const Signin = () => {
         </form>
         <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
       </div>
-      <div className="background-image"></div>
+      <div className="background-image-Signin">
+        <img src={img2} alt="" />
+      </div>
     </div>
   );
 };
