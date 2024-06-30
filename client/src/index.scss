@@ -1,5 +1,9 @@
 $dark: #123;
 $primary: rgb(10, 74, 74);
 
+body {
+  font-family: Georgia !important;
+}
+
 @import 'bootstrap/scss/bootstrap';
 // @import './App.css';

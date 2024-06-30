@@ -13,7 +13,7 @@ const Header = () => {
   }
 
   return (
-    <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="fixed-top mb-5 shadow">
+    <Navbar bg="light" data-bs-theme="light" expand="lg" className="fixed-top mb-5 shadow">
       <Container>
         <Navbar.Brand href="/">
           <img src={logo} alt="SharpSkill logo" />
@@ -29,7 +29,7 @@ const Header = () => {
             <Nav.Link href="/reviews" active={ pathStartsWith('/reviews') }>Reviews</Nav.Link>
             <div className="my-3 my-lg-0">
               <a href="/signup" className="btn btn-primary rounded-4 mx-1">Sign Up</a>
-              <a href="/signin" className="btn btn-outline-light mx-1 rounded-4">Sign In</a>
+              <a href="/signin" className="btn btn-outline-dark mx-1 rounded-4">Sign In</a>
             </div>
           </Nav>
         </Navbar.Collapse>
