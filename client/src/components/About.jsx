@@ -10,7 +10,7 @@ import room from "../assets/images/room.png";
 
 const About = () => {
   return (
-    <div className="about_about_container">
+    <div className="about_about_container mt-5 py-3">
       <div className="about_upper_container">
         <div className="about_img_box">
           <div className="about_img1_box">
