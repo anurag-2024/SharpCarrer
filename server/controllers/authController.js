@@ -12,12 +12,8 @@ import User from '../models/User.model.js';
  * @return	{Object} -Json object that contains token
  */
 export const signup = async (req, res) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-
-	const { Name, Email, Password, Contact_no, Is_verified } = req.body;
+	
+	const { userName, Email, Password, Contact_no, Is_verified } = req.body;
 
 	try {
 		let user = await User.findOne({ Email });
@@ -29,7 +25,7 @@ export const signup = async (req, res) => {
 			return res.status(400).json({ msg: 'User with the same phone number already exists!' });
 		}
 
-		user = new User({ Name, Email, Password, Contact_no });
+		user = new User({ userName, Email, Password, Contact_no,Is_verified });
 
 		// pwd crypt
 		const salt = await bcrypt.genSalt(10);
@@ -39,11 +35,7 @@ export const signup = async (req, res) => {
 
 		// create and send JWT token
 
-		const payload = { user: { id: user.id }};
-		jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
-			if (err) throw err;
-			res.json({ token });
-		});
+		return res.status(201).json({ message: 'User registered successfully' });
 	} catch (err) {
 		console.error(err);
 		res.status(500).send('Server error');
@@ -59,26 +51,22 @@ export const signup = async (req, res) => {
  * @return	{Object} -Json object that contains token
  */
 export const login = async (req, res) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-
+	
 	const { Email, Password } = req.body;
 
 	try {
 		let user = await User.findOne({ Email });
 		if (!user) {
-			return res.status(400).json({ msg: 'Invalid Credentials' });
+			return res.status(400).json({ message: 'Invalid Email' });
 		}
 		
 		// verify password
 		const isMatch = await bcrypt.compare(Password, user.Password);
 		if (!isMatch) {
-			return res.status(400).json({ msg: 'Invalid Credentials' });
+			return res.status(400).json({ message: 'Invalid Credentials' });
 		}
 
-		const payload = { user: { id: user.id } };
+		const payload = { id: user._id } ;
 		jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
 			if (err) throw err;
 			res.json({ token });
@@ -86,5 +74,18 @@ export const login = async (req, res) => {
 	} catch (err) {
 		console.error(err);
 		res.status(500).send('Server error');
+	}
+}
+
+export const getUser=async(req,res)=>{
+	try{
+		const user=await User.findById(req.user.id).select('-Password');
+		if(!user){
+			return res.status(404).json({message:'User not found'});
+		}
+		return res.status(200).json(user);
+	}
+	catch(err){
+		return res.status(500).send({message:'Internal Server error'});
 	}
 }

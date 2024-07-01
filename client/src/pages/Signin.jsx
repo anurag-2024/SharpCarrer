@@ -2,16 +2,28 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/Signin.scss';
 import img2 from '../assets/images/signin.jpg'
-
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { URL } from '../utils/url';
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Add your sign in logic here
-    console.log('Sign in with:', email, password);
+    try{
+      const res=await axios.post(`${URL}/auth/login`,{Email:email,Password:password});
+      if(res.status===200){
+        toast.success('Logged in Successfully');
+        localStorage.setItem('token',res.data.token);
+        navigate('/');
+      }
+    }
+    catch(err){
+      console.log(err)
+      toast.error(err.response.data.message)
+    }
   };
   return (
     <div className="signin-container">
