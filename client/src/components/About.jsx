@@ -13,31 +13,47 @@ const About = () => {
   return (
     <>
       <div className="mt-5 py-5">
-        <Container>
-          <Row>
+        <Container className="py-5">
+          <Row className="align-items-stretch">
             <Col lg={4}>
-              <Row>
-                <Col md={6}>
-                  <div className="ps-3 border-start border-2 mb-3">
-                    <img src={img1} alt="Image 1" className="img-fluid" />
+              <Row className="align-items-stretch h-100">
+                <Col md={6} className="d-flex flex-column justify-content-between">
+                  <div className="ps-3 border-start border-2 border-secondary mb-3" style={{ height: '40%' }}>
+                    <img src={img1} alt="Image 1" className="img-fluid h-100 object-fits-cover" />
+                  </div>
+                  <div className="pb-3 border-bottom border-2 border-secondary me-3" style={{ height: '80%'}}>
+                    <img src={img4} alt="Image 4" className="img-fluid h-100" />
                   </div>
                 </Col>
-                <Col md={6}>
-                  <div className="pt-3 border-top border-2 mb-3">
-                    <img src={img4} alt="Image 4" className="img-fluid" />
+                <Col md={6} className="d-flex flex-column justify-content-between">
+                  <div className="pt-3 border-top border-2 border-secondary ms-3 mb-3" style={{ height: '40%' }}>
+                    <img src={img3} alt="Image 3" className="img-fluid h-100 object-fits-cover" />
                   </div>
-                </Col>
-                <Col md={6}>
-                  <div className="pb-3 border-bottom border-2 mb-3">
-                    <img src={img2} alt="Image 2" className="img-fluid" />
-                  </div>
-                </Col>
-                <Col md={6}>
-                  <div className="pe-3 border-end border-2 mb-3">
-                    <img src={img3} alt="Image 3" className="img-fluid" />
+                  <div className="pe-3 border-end border-2 border-secondary" style={{ height: '80%' }}>
+                    <img src={img2} alt="Image 2" className="img-fluid h-100 object-fits-cover" />
                   </div>
                 </Col>
               </Row>
+            </Col>
+            <Col lg={8}>
+              <div>
+                <div className="d-flex align-items-center justify-content-around">
+                  <div className="w-25 bg-secondary" style={{ height: 2 }}></div>
+                  <h2>About Us</h2>
+                  <div className="w-25 bg-secondary" style={{ height: 2 }}></div>
+                </div>
+                <h3 className="h1">Welcome To SharpSkill</h3>
+                <div className="h3 mb-4">Your Gateway To Exceptional Stays</div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
+                  officiis, est vero reprehenderit provident laborum similique, iusto
+                  repellat quis ipsam fugit ullam! Repudiandae, qui accusamus sunt
+                  praesentium voluptas natus earum nemo odit veritatis enim. Expedita,
+                  id aperiam porro molestiae assumenda minima ullam dolore rerum ipsum
+                  recusandae exercitationem, adipisci hic doloremque! Magni blanditiis
+                  repellendus omnis natus hic earum consequuntur asperiores deleniti.
+                </p>
+              </div>
             </Col>
           </Row>
         </Container>
