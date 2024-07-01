@@ -28,13 +28,6 @@ const Signup = () => {
           <div className="divider">Or Sign up with Email</div>
           <form className='authform' onSubmit={handleSubmit}>
             <input
-              type="text"
-              placeholder="Enter your Full Name"
-              value={name}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
               type="email"
               placeholder="Enter your email"
               value={email}
@@ -48,14 +41,7 @@ const Signup = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <input
-              type="password"
-              placeholder="Confirm your Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <button type="submit" className="btn btn-primary py-3">Continue</button>
+            <button type="submit" className="submit-button">Continue</button>
           </form>
           <p>Have an account? <Link to="/signin">Sign In</Link></p>
         </div>
