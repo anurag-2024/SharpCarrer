@@ -36,7 +36,7 @@ const Signin = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button type="submit" className="submit-button">Continue</button>
+            <button type="submit" className="btn btn-primary py-3">Continue</button>
           </form>
           <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
         </div>
