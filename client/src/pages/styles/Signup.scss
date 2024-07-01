@@ -21,17 +21,17 @@ $font-family: "Brush Script MT", cursive;
     width: 50%;
     margin: auto;
     display: flex;
-    padding: 5.2rem 0;
+    padding: 0;
     flex-direction: column;
     align-items: center;
     position: relative;
     overflow-y: auto;
     @include md{
       width: 100%;
-      padding: 3.3rem 0;
+      padding: 1.3rem 0;
     }
     .signup-form-left {
-      padding: 1rem;
+      padding: 0rem;
       width: 70%;
       @include md{
         width: 85%;
@@ -145,7 +145,7 @@ $font-family: "Brush Script MT", cursive;
     }
     img {
       width: 100%;
-      height: 40rem;
+      height: 45rem;
       object-fit: cover;
     }
   }

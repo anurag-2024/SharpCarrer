@@ -11,9 +11,6 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Explore from "./pages/Explore";
 import HotelDetails from "./pages/HotelDetails";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.scss";
-
 function App() {
   return (
     <BrowserRouter>
