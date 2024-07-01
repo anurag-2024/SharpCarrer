@@ -2,22 +2,41 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/Signup.scss'; // Ensure this CSS file exists
 import img2 from '../assets/images/signin.jpg'
+import axios from 'axios' 
+import {URL} from '../utils/url'
+import { toast } from 'react-toastify';
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [confirmPassword,setConfirmPassword]=useState('')
+  const [user,setuser]=useState({
+    userName:'',
+    Email:'',
+    Password:'',
+    Contact_no:'',
+    Is_verified:false
+  })
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    // Add your sign-up logic here
-    console.log('Sign up with:', email, password);
+    try{
+      if(confirmPassword!==user.Password){
+        toast.error('Password and Confirm Password should be same')
+        return;
+      }
+        const res=await axios.post(`${URL}/auth/signup`,user);
+        if(res.status===201){
+          toast.success(res.data.message)
+          navigate('/signin')
+        }
+      }catch(err){
+        console.log(err)
+        toast.error(err.response.data.message)
+      }
   };
-
-  const handleClose = () => {
-    navigate('/');
-  };
-
+  const handleChange=(e)=>{
+    setuser({...user,[e.target.name]:e.target.value})
+  }
   return (
     <div className="signup-container">
       <div className="signup-form">
@@ -29,33 +48,44 @@ const Signup = () => {
           <form className='authform' onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Enter your Full Name"
-              value={name}
-              onChange={(e) => setEmail(e.target.value)}
+              name='userName'
+              placeholder="Enter User Name"
+              value={user.userName}
+              onChange={handleChange}
               required
             />
             <input
               type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name='Email'
+              placeholder="Enter your Email"
+              value={user.Email}
+              onChange={handleChange}
               required
             />
             <input
               type="password"
+              name='Password'
               placeholder="Set your Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={user.Password}
+              onChange={handleChange}
               required
             />
             <input
-              type="password"
-              placeholder="Confirm your Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type='password'
+              placeholder='Confirm Password'
+              value={confirmPassword}  
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <button type="submit" className="btn btn-primary py-3">Continue</button>
+            <input
+              type="text"
+              name='Contact_no'
+              placeholder="Enter your Contact Number"
+              value={user.Contact_no}
+              onChange={handleChange}
+              required
+              />
+            <button type="submit" className="submit-button">Signup</button>
           </form>
           <p>Have an account? <Link to="/signin">Sign In</Link></p>
         </div>
