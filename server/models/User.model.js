@@ -10,7 +10,7 @@ const roleEnum = ['user', 'admin'];
  * User schema
  */
 const UserSchema = mongoose.Schema({
-	Name: {
+	userName: {
 		type: String,
 		required: true
 	},
@@ -24,7 +24,7 @@ const UserSchema = mongoose.Schema({
 		required: true
 	},
 	Contact_no: {
-		type: Number,
+		type: String,
 		required: true,
 		unique: true
 	},
