@@ -6,6 +6,7 @@ import authRouter from './routes/authRouter.js';
 import roomsRouter from './routes/roomsRouter.js';
 import bookingsRouter from './routes/bookingsRouter.js';
 import userRouter from './routes/userRoutes.js';
+import morgan from 'morgan';
 
 dotenv.config(); 
 connectDB(); 
@@ -15,7 +16,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors()); // Enable CORS
-
+app.use(morgan('tiny'));
 // Routes
 app.use('/api/auth', authRouter);
 app.use('/api/rooms', roomsRouter);

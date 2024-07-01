@@ -10,6 +10,9 @@
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 100;
+  @include md{
+    padding: 10px;
+  }
   .header-main {
     display: flex;
     justify-content: space-between;
@@ -36,6 +39,9 @@
       display: flex;
       gap: 20px;
       margin-right: 5rem;
+      @include md{
+        margin-right: 0;
+      }
       a {
         color: #fff;
         text-decoration: none;
@@ -43,7 +49,6 @@
         font-family: "Arial, sans-serif";
         margin: 0 10px;
         transition: color 0.3s ease;
-
         &:hover {
           color: #ff5a5f;
         }
@@ -53,7 +58,22 @@
     .auth-buttons_u {
       display: flex;
       gap: 10px;
-
+      .logout{
+        display: flex;
+        gap: 1rem;
+        @include md{
+          flex-direction: column;
+          gap: 0;
+        }
+        .profile_u{
+          height: 2.8rem;
+          margin-top: 0.5rem;
+          padding: 0.1rem 2rem;
+          @include md{
+            margin-top: 0;
+          }
+        }
+      }
       button {
         padding: 10px 15px;
         border: none;
@@ -63,9 +83,13 @@
         transition: background-color 0.3s ease;
 
         &.sign-in_u {
+          margin-right: 1rem;
           background-color: #ff5a5f;
           color: white;
-
+          @include md{
+            margin-right: 0;
+            margin-bottom: 0.4rem;
+          }
           &:hover {
             background-color: #e04e50;
           }
@@ -84,7 +108,7 @@
     }
   }
 
-  @media (max-width: 821px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
     .logo_u {

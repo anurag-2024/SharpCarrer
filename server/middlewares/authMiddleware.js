@@ -13,15 +13,11 @@ import User from '../models/User.model.js';
  * @param 	{Response} res - Express response object
  */
 export const authenticateToken = (req, res, next) => {
-	const authHeader = req.headers['authorization'];
-	const token = authHeader && authHeader.split(' ')[1];
-	if (token == null) return res.sendStatus(401); // Unauthorized
-
-	jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
-		if (err) return res.sendStatus(403); // Forbidden
-		req.payload = payload;
-		next();
-	});
+	const token=req.headers?.authorization?.split(" ")[1];
+	if(!token) return res.status(401).json({message:"Access Denied"});
+	const decodedToken=jwt.verify(token,process.env.JWT_SECRET)
+	req.user=decodedToken;
+	next();
 }
 
 /**
