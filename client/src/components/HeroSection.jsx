@@ -29,7 +29,7 @@ const HeroSection = () => {
   }
   return (
     <section className="hero-section">
-      <video autoPlay muted loop id="background-video">
+      <video  muted loop id="background-video">
         <source src={video} type="video/mp4" />
       </video>
       <div className="hero-content">
