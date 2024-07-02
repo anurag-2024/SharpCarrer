@@ -20,7 +20,7 @@ const Services = () => {
           <div className="bg-dark mx-2" style={{ height: 2, width: 24 }}></div>
         </div>
         <Row>
-          <Col lg={6} className="bg-primary">
+          <Col lg={6} className="bg-primary pt-5">
             <div className="py-5">
               <div className="d-none d-lg-flex align-items-center justify-content-end text-light pt-5">
                 <div className="w-25 bg-light mx-2" style={{ height: 2 }}></div>
@@ -53,7 +53,7 @@ const Services = () => {
             </div>
           </Col>
 
-          <Col lg={6} className="bg-light">
+          <Col lg={6} className="bg-light pt-5">
             <div className="py-5">
               <div className="d-none d-lg-flex align-items-center justify-content-start text-dark pt-lg-5">
                 <div className="h1">Services</div>

@@ -20,25 +20,26 @@ const About = () => {
               <Row className="align-items-stretch h-100">
                 <Col xs={6} className="d-flex flex-column justify-content-between">
                   <div className="ps-3 border-start border-2 border-secondary mb-3" style={{ height: '40%' }}>
-                    <img src={img1} alt="Image 1" className="img-fluid h-100 object-fits-cover" />
+                    <img src={img1} alt="Image 1" className="img-fluid h-100 w-100 object-fits-cover" />
                   </div>
-                  <div className="pb-3 border-bottom border-2 border-secondary me-3" style={{ height: '80%'}}>
-                    <img src={img4} alt="Image 4" className="img-fluid h-100" />
+                  <div className="pb-3 border-bottom border-2 border-secondary" style={{ height: '80%'}}>
+                    <img src={img4} alt="Image 4" className="img-fluid h-100 w-100 object-fits-cover" />
                   </div>
                 </Col>
                 <Col xs={6} className="d-flex flex-column justify-content-between">
-                  <div className="pt-3 border-top border-2 border-secondary ms-3 mb-3" style={{ height: '40%' }}>
-                    <img src={img3} alt="Image 3" className="img-fluid h-100 object-fits-cover" />
+                  <div className="pt-3 border-top border-2 border-secondary mb-3" style={{ height: '40%' }}>
+                    <img src={img3} alt="Image 3" className="img-fluid h-100 w-100 object-fits-cover" />
                   </div>
                   <div className="pe-3 border-end border-2 border-secondary" style={{ height: '80%' }}>
-                    <img src={img2} alt="Image 2" className="img-fluid h-100 object-fits-cover" />
+                    <img src={img2} alt="Image 2" className="img-fluid h-100 w-100 object-fits-cover" />
                   </div>
                 </Col>
               </Row>
             </Col>
+
             <Col lg={8}>
               <div>
-                <div className="d-flex align-items-center justify-content-around">
+                <div className="d-flex align-items-center justify-content-around mb-3">
                   <div className="w-25 bg-secondary" style={{ height: 2 }}></div>
                   <h2>About Us</h2>
                   <div className="w-25 bg-secondary" style={{ height: 2 }}></div>
