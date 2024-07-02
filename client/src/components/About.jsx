@@ -60,11 +60,11 @@ const About = () => {
           </Row>
         </Container>
       </div>
-      <Container fluid className="bg-primary">
-        <Container className="py-5">
+      <Container fluid className="">
+        <Container className="pb-5">
           <Row className="text-light">
             <Col md={4} className="px-3">
-              <div className="d-flex bg-dark py-4 mx-lg-5 mb-3 mt-md-5">
+              <div className="d-flex bg-primary py-4 mx-lg-5 mb-3 mt-md-5">
                 <div className="w-50 text-center">
                   <Icon.PeopleFill className="h1" />
                 </div>
@@ -75,7 +75,7 @@ const About = () => {
               </div>
             </Col>
             <Col md={4} className="px-3">
-              <div className="d-flex bg-dark py-4 mb-3 mx-lg-5 mb-md-5">
+              <div className="d-flex bg-primary py-4 mb-3 mx-lg-5 mb-md-5">
                 <div className="w-50 text-center">
                   <Icon.PersonLinesFill className="h1" />
                 </div>
@@ -86,7 +86,7 @@ const About = () => {
               </div>
             </Col>
             <Col md={4} className="px-3">
-              <div className="d-flex bg-dark py-4 mx-lg-5 mb-3 mt-md-5">
+              <div className="d-flex bg-primary py-4 mx-lg-5 mb-3 mt-md-5">
                 <div className="w-50 text-center">
                   <Icon.BuildingFill className="h1" />
                 </div>
