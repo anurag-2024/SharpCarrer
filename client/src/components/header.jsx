@@ -1,61 +1,41 @@
-import React, { useState, useContext } from 'react';
-import './styles/header.scss';
+import { useLocation } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import logo from '../assets/logo.png';
-import { Link } from 'react-router-dom';
-import { VscThreeBars } from "react-icons/vsc";
-import { UserContext } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom';
+
 const Header = () => {
-  const navigate = useNavigate();
-  const [menu, setmenu] = useState(true);
-  const { user } = useContext(UserContext);
-  console.log(user);
-  const handleClick = () => {
-    setmenu(!menu);
+  const location = useLocation();
+  const pathIs = (path) => {
+    return location.pathname === path;
   }
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    window.location.reload();
+  const pathStartsWith = (text) => {
+    return RegExp("^" + text, 'i').test(location.pathname);
   }
+
   return (
-    <>
-      <header className="header_u">
-        <div className='header-main'>
-          <Link to="/" className="logo_u">
-            <img src={logo} alt="SharpSkill Logo" />
-          </Link>
-          {window.innerWidth < 768 && <div className="menu-icon_u" onClick={() => handleClick()}>
-            <VscThreeBars />
-          </div>}
-        </div>
-        {menu &&
-          <div className='menu'>
-            <nav>
-              <Link to="/">Home</Link>
-              <Link to="/about">About Us</Link>
-              <Link to="/accomodation">Accommodations</Link>
-              <Link to="/explore">Explore</Link>
-              <Link to="/services">Services</Link>
-              <Link to="/reviews">Reviews</Link>
-            </nav>
-            <div className="auth-buttons_u">
-              {user &&
-                <div className='logout'>
-                  <h2>Hi, {user?.userName}</h2>
-                  <button onClick={handleLogout} className="profile_u">Logout</button>
-                </div>
-              }
-              {!user &&
-                <div>
-                  <Link to="/signin"><button className="sign-in_u">Sign In</button></Link>
-                  <Link to="/signup"><button className="sign-up_u">Sign Up</button></Link>
-                </div>}
+    <Navbar bg="light" data-bs-theme="light" expand="lg" className="fixed-top mb-5 shadow">
+      <Container>
+        <Navbar.Brand href="/">
+          <img src={logo} alt="SharpSkill logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarNav" />
+        <Navbar.Collapse id="navbarNav" className="justify-content-center justify-content-lg-end">
+          <Nav className="align-items-center">
+            <Nav.Link href="/" active={ pathIs('/') }>Home</Nav.Link>
+            <Nav.Link href="/about" active={ pathStartsWith('/about') }>About</Nav.Link>
+            <Nav.Link href="/accomodation" active={ pathStartsWith('/accomodation') }>Accomodation</Nav.Link>
+            <Nav.Link href="/explore" active={ pathStartsWith('/explore') }>Explore</Nav.Link>
+            <Nav.Link href="/services" active={ pathStartsWith('/services') }>Services</Nav.Link>
+            <Nav.Link href="/reviews" active={ pathStartsWith('/reviews') }>Reviews</Nav.Link>
+            <div className="my-3 my-lg-0">
+              <a href="/signup" className="btn btn-primary mx-1">Sign Up</a>
+              <a href="/signin" className="btn btn-outline-dark mx-1">Sign In</a>
             </div>
-          </div>
-        }
-      </header>
-    </>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-}
+};
 
 export default Header;

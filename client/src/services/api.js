@@ -157,4 +157,3 @@ export const deleteRoom = async roomId => {
 		console.error('Error :', err);
 	}
 }
-
