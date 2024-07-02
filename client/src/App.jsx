@@ -11,9 +11,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Explore from "./pages/Explore";
 import HotelDetails from "./pages/HotelDetails";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.scss";
-
+import HotelBooking from "./pages/HotelBooking";
 function App() {
   return (
     <BrowserRouter>
@@ -27,7 +25,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/explore/hotel" element={<HotelDetails />} />
+        <Route path="/explore/hotel/:id" element={<HotelDetails />} />
       </Routes>
       <Footer />
     </BrowserRouter>

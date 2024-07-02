@@ -1,11 +1,11 @@
 import express from 'express';
 import { check } from 'express-validator';
-import { signup, login } from '../controllers/authController.js';
-
+import { signup, login ,getUser} from '../controllers/authController.js';
+import { authenticateToken } from '../middlewares/authMiddleware.js';
 const router = express.Router();
 
 router.post('/signup', [
-	check('Name', 'Name is required').not().isEmpty(),
+	check('userName', 'userName is required').not().isEmpty(),
 	check('Email', 'Please enter a valid email').isEmail(),
 	check('Password', 'Please enter a password with 6 or more characteres').isLength({ min: 6 }),
 	check('Contact_no', 'Please enter a valid phone number').isMobilePhone('any'),
@@ -16,4 +16,5 @@ router.post('/login', [
 	check('Password', 'Password is required').exists()
 ], login);
 
+router.get('/',authenticateToken,getUser);
 export default router;
