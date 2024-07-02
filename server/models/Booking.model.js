@@ -15,9 +15,15 @@ const BookingSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
-	Room_id: {
+	Hotel_id: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true
+	},
+	Room_type:{
+		type:String,
+	},
+	guestSize:{
+		type:Number
 	},
 	Check_in_date: {
 		type: Date,

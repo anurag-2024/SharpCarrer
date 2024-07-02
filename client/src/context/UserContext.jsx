@@ -9,7 +9,6 @@ export const UserProvider=({children})=>{
     const getUser=async()=>{
         try{ 
             if(token===null) return setuser(null);
-            console.log(token);
             const res=await axios.get(`${URL}/auth`,{
                 headers:{
                     Authorization:`Bearer ${token}`

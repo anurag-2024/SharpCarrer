@@ -2,7 +2,7 @@
  * @module 	roomsController
  */
 
-import Room from '../models/Room.model.js';
+import Hotel from "../models/Hotel.model";
 
 /**
  * Add room data to database.
@@ -52,16 +52,14 @@ export const deleteRoom = async (req, res) => {
  * @param 	{Response} res - Express response object
  * @return 	{Object} - Json object of the room
  */
-export const getRoom = async (req, res) => {
+export const getHotel = async (req, res) => {
 	try {
-		const roomId = req.params.id;
-		const room = await Room.findById(roomId);
+		const hotel = await Hotel.findById(req.params.id);
 
-		if (!room) {
-			return res.status(404).json({ message: 'Room not found' });
+		if (!hotel) {
+			return res.status(404).json({ message: 'Hotel not found' });
 		}
-
-		res.status(200).json(room);
+		res.status(200).json(hotel);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
 	}
@@ -75,11 +73,11 @@ export const getRoom = async (req, res) => {
  * @param 	{Response} res - Express response object
  * @return	{Object} -Json object of all rooms
  */
-export const getRooms = async (req, res) => {
+export const getHotels = async (req, res) => {
 	try {
-		const rooms = await Room.find({});
-		res.status(200).json(rooms);
+		const hotels = await Hotel.find({});
+		res.status(200).json(hotels);
 	} catch (err) {
-		res.status(500).json({ message: err.message });
+		res.status(500).json({ message: "Internal Server Error" });
 	}
 }

@@ -1,6 +1,10 @@
 @import "../../mixins.scss";
 .memorable_header {
   text-align: center;
+  margin-top: 6rem;
+  @include md{
+    margin-bottom: 2rem;
+  }
 }
 
 .memorable_container {

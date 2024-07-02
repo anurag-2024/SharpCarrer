@@ -1,6 +1,8 @@
 @import '../../mixins.scss';
 .explore_container {
     height: 100%;
+    margin-top:4rem;
+    margin-bottom: 2rem;
     @include md{
       height: 100%;
     }

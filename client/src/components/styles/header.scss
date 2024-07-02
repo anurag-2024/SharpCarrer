@@ -1,4 +1,8 @@
 @import "../../mixins.scss";
+
+.user{
+  display: flex;
+}
 .header_u {
   position: sticky;
   top: 0;

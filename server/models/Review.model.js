@@ -6,9 +6,9 @@ const reviewSchema = new mongoose.Schema({
     ref: "User",  
     required: true,
   },
-  Booking_id: {
+  Hotel_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Booking",  
+    ref: "Hotel",  
     required: true,
   },
   Rating: {

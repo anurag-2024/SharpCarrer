@@ -34,5 +34,5 @@ export const reviews = [
         "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu.",
       name: "Jane Doe",
       rating: 3,
-    },
+    }
   ];

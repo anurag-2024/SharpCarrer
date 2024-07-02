@@ -1,3 +1,4 @@
+@import '../../mixins.scss';
 body {
   margin: 0;
   padding: 0;
@@ -23,7 +24,12 @@ body.no-scroll {
   justify-content: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+  @include md{
+    width: 90%;
+    margin: 0 5%;
+    left: 1%;
+    top: 11%;
+  }
   .cross {
     display: flex;
     width: 100%;
@@ -39,7 +45,9 @@ body.no-scroll {
     margin-bottom: 10%;
     width: 70%;
     text-align: center;
-
+    @include md{
+      width: 100%;
+    }
     h2,h4 {
       margin: 0;
       color: white;
@@ -47,7 +55,6 @@ body.no-scroll {
   }
 
   .inputForm {
-    // margin-bottom: 20px;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -115,6 +122,8 @@ body.no-scroll {
 }
 .hotel_main {
   width: 100%;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
   overflow-y: auto;
   position: relative;
   .hotel_Upper {
@@ -131,7 +140,9 @@ body.no-scroll {
       width: 84%;
       height: 100%;
       margin-right: 0.5%;
-
+      @include md{
+        width: 100%;
+      }
       img {
         height: 100%;
         width: 100%;
@@ -141,7 +152,7 @@ body.no-scroll {
         position: absolute;
         top: 40%;
         left: 50%;
-        width: 8%;
+        width: 10%;
         transform: translate(-50%, -50%);
         background-color: yellow;
         color: black;
@@ -151,12 +162,17 @@ body.no-scroll {
         border: none;
         cursor: pointer;
         text-decoration: none;
+        @include md{
+          width: 30%;
+        }
       }
     }
     .right_1 {
       height: 100%;
       width: 15.5%;
-
+      @include md{
+        display: none;
+      }
       img {
         height: 100%;
         width: 100%;
@@ -193,28 +209,37 @@ body.no-scroll {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
+      @include md{
+        flex-direction: column;
+      }
+      
       .top {
         height: 30%;
         width: 100%;
         display: flex;
         justify-content: space-between;
         background-color: azure;
-
+        @include md{
+          flex-direction: column;
+        }
         .hotel_details {
           width: 80%;
           height: 100%;
           display: flex;
-
+          @include md{
+            width: 100%;
+            flex-direction: column;
+          }
           .left_half {
             width: 49%;
-            // height: 79%;
             background-color: rgb(34, 79, 79);
             padding: 30px;
-            // padding-top: 50px;
             color: white;
             position: relative;
             margin-right: 1%;
+            @include md{
+              width: 100%;
+            }
             .texts {
               width: 100%;
               height: 100%;
@@ -224,7 +249,8 @@ body.no-scroll {
               .left_half_book_button {
                 position: absolute;
                 right: 1%;
-                width: 15%;
+                width: 25%;
+                margin-right: -10%;
                 transform: translate(-50%, -50%);
                 background-color: rgb(255, 232, 115);
                 color: black;
@@ -236,6 +262,10 @@ body.no-scroll {
                 border: none;
                 cursor: pointer;
                 text-decoration: none;
+                @include md{
+                  width: 40%;
+                  margin-right: -14%;
+                }
               }
             }
           }
@@ -245,7 +275,9 @@ body.no-scroll {
             height: 100%;
             display: flex;
             flex-direction: column;
-
+            @include md{
+              width: 100%;
+            }
             .upper_part_right_half {
               height: 50%;
               width: 100%;
@@ -255,10 +287,7 @@ body.no-scroll {
             .header_right_half {
               height: 10%;
               width: 100%;
-              // display: flex;
               position: absolute;
-              // justify-content: center;
-              // align-items: center;
             }
 
             .lower_part_right_half {
@@ -276,7 +305,9 @@ body.no-scroll {
         .hotel_images {
           height: 100%;
           width: 20%;
-
+           @include md{
+            width: 100%;
+           };
           .upper_contain {
             height: 50%;
             width: 100%;
@@ -321,7 +352,9 @@ body.no-scroll {
           justify-content: center;
           align-items: center;
           margin: 10px;
-
+          @include md{
+            width: 90%;
+          }
           .star-icons {
             margin-bottom: 10px;
             color: darkorange;
@@ -329,18 +362,16 @@ body.no-scroll {
           }
 
           .msg-icons {
-            // margin-bottom: 0.5rem;
             font-size: 2rem;
           }
 
           p {
-            // margin-bottom: 1.5rem;
-            text-align: center;
+            
+            text-align:justify;
           }
 
           strong {
             display: block;
-            // margin-bottom: 1rem;
           }
         }
       }
@@ -355,7 +386,9 @@ body.no-scroll {
     display: flex;
     justify-content: space-around;
     z-index: 10;
-
+    @include md{
+      display: none;
+    }
     img {
       height: 100%;
       width: 15%;

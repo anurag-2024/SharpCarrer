@@ -15,13 +15,8 @@ import { validationResult } from 'express-validator';
  * @return	{Object} - JSON object of the new booking
  */
 export const createBooking = async (req, res) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-
-	const User_id = req.payload.user.id;
-	let { Room_id, Check_in_date, Check_out_date } = req.body;
+	const User_id = req.user.id;
+	let { Hotel_id, Check_in_date, Check_out_date ,Room_type,guestSize} = req.body;
 	
 	Check_in_date = new Date(Check_in_date);
 	Check_out_date = new Date(Check_out_date);
@@ -31,7 +26,7 @@ export const createBooking = async (req, res) => {
 	}
 
 	try {
-		const newBooking = await Booking.create({ User_id, Room_id, Check_in_date, Check_out_date });
+		const newBooking = await Booking.create({ User_id, Hotel_id, Check_in_date, Check_out_date,Room_type,guestSize });
 		res.status(201).json(newBooking);
 	} catch (err) {
 		res.status(400).json({ message: err.message });
