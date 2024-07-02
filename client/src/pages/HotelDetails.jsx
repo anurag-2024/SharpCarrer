@@ -16,73 +16,110 @@ import rowImg4 from "../assets/images/aboutus_1.jpg";
 import room3 from "../assets/images/room (3).jpg";
 import room2 from "../assets/images/room (2).jpg";
 import room1 from "../assets/images/room (1).jpg";
-
+import { reviews } from "../data/reviews";
+import { ImCross } from "react-icons/im";
 const HotelDetails = () => {
-  const reviews = [
-    {
-      message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu .",
-      name: "Lora Smith",
-      rating: 5,
-    },
-    {
-      message:
-        "Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu.",
-      name: "John Doe",
-      rating: 4,
-    },
-    {
-      message:
-        "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu.",
-      name: "Jane Doe",
-      rating: 3,
-    },
-    {
-      message:
-        "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu.",
-      name: "Jane Doe",
-      rating: 3,
-    },
-    {
-      message:
-        "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu.",
-      name: "Jane Doe",
-      rating: 3,
-    },
-    {
-      message:
-        "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu.",
-      name: "Jane Doe",
-      rating: 3,
-    },
-  ];
-   const [visibleReviews,setVisibleReviews]=useState([]);
-   const updatevisbleReviews=()=>{
-    const width=window.innerWidth;
+  const [isbook, setisBook] = useState(false);
+  const [guestDetails, setGuestDetails] = useState({
+    roomType: 'deluxe',
+    adults: '1',
+    children: '0',
+    checkin: '',
+    checkout: ''
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setGuestDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value
+    }));
+  };
+  const [visibleReviews, setVisibleReviews] = useState([]);
+  const updatevisbleReviews = () => {
+    const width = window.innerWidth;
     if (width >= 1093) {
-      setVisibleReviews(reviews.slice(0, 6)); 
+      setVisibleReviews(reviews.slice(0, 6));
     } else if (width >= 768) {
       setVisibleReviews(reviews.slice(0, 4));
     } else {
-      setVisibleReviews(reviews.slice(0, 2)); 
+      setVisibleReviews(reviews.slice(0, 2));
     }
-   }
-useEffect(()=>{
-  updatevisbleReviews();
-  window.addEventListener('resize',updatevisbleReviews);
-  return ()=>{
-    window.removeEventListener('resize',updatevisbleReviews);
   }
-},[]);
-
+  useEffect(() => {
+    updatevisbleReviews();
+    window.addEventListener('resize', updatevisbleReviews);
+    return () => {
+      window.removeEventListener('resize', updatevisbleReviews);
+    }
+  }, []);
+  useEffect(() => {
+    if (isbook) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isbook]);
   return (
-    <div className="hotel_main">
+    <>
+      {isbook &&
+        <div className="booking_form">
+          <div className="cross">
+          <ImCross onClick={()=>setisBook(!isbook)}/>
+          </div>
+          <div className="header">
+            <h2>Experience the Luxury </h2>
+            <h4>Book your stay today!</h4>
+          </div>
+          <div className="inputForm">
+            <form>
+              <label>
+                Room Type:
+                <select name="roomType" value={guestDetails.roomType} onChange={handleChange}>
+                  <option value="deluxe">Deluxe</option>
+                  <option value="family">Family Suite</option>
+                </select>
+              </label>
+              <label>
+                Adults:
+                <select name="adults" value={guestDetails.adults} onChange={handleChange}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </label>
+              <label>
+                Children (below 8):
+                <select name="children" value={guestDetails.children} onChange={handleChange}>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              </label>
+              <label>
+                Check-in Date:
+                <input type="date" name="checkin" value={guestDetails.checkin} onChange={handleChange} />
+              </label>
+              <label>
+                Check-out Date:
+                <input type="date" name="checkout" value={guestDetails.checkout} onChange={handleChange} />
+              </label>
+            </form>
+          </div>
+          <div className="btn">
+            <button type='submit'>Proceed</button>
+          </div>
+        </div>
+      }
+
+
+    <div className={isbook?'hotel_main blur':'hotel_main'}>
       <div className="hotel_Upper">
         <div className="left_1">
           <img src={hotelImg1} alt="Hotel Image 1" />
-          <a href="/booking-page" className="book-button">
+          <button className="book-button" onClick={()=>setisBook(!isbook)}>
             Book
-          </a>
+          </button>
         </div>
         <div className="right_1">
           <img src={hotelImg2} alt="Hotel Image 2" />
@@ -94,7 +131,6 @@ useEffect(()=>{
           <img src={img2} alt="Image 2" />
           <img src={img3} alt="Image 3" />
           <img src={img4} alt="Image 4" />
-          <img src={img5} alt="Image 5" />
         </div>
         <div className="right_2">
           <div className="top">
@@ -108,19 +144,18 @@ useEffect(()=>{
                     necessitatibus officia repellendus fuga sunt, ex nisi
                     similique asperiores nobis illo? Aspernatur sequi debitis
                     nesciunt cumque sapiente ducimus, veniam maiores numquam ab
-                    distinctio consequuntur delectus recusandae reiciendis nulla
-                    molestiae, corporis nisi, nam accusamus consectetur? Neque
+
                   </p>
-                  <a href="/booking-page" className="left_half_book_button">
+                  <button className="left_half_book_button" onClick={()=>setisBook(!isbook)}>
                     Book
-                  </a>
+                  </button>
                 </div>
               </div>
               <div className="right_half">
-                <div className="upper_part_right_half"></div>
-                <div className="header_right_half">
+                {/* <div className="upper_part_right_half"></div> */}
+                {/* <div className="header_right_half">
                   <h3>Deluxe Rooms Twin Bed</h3>
-                </div>
+                </div> */}
                 <div className="lower_part_right_half">
                   <img src={room1} alt="Room 1" />
                 </div>
@@ -129,11 +164,11 @@ useEffect(()=>{
             <div className="hotel_images">
               <div className="upper_contain">
                 <img src={room2} alt="Room 2" />
-                <p>Deluxe Room</p>
+                {/* <p>Deluxe Room</p> */}
               </div>
               <div className="lower_contain">
                 <img src={room3} alt="Room 3" />
-                <p>Family Suite</p>
+                {/* <p>Family Suite</p> */}
               </div>
             </div>
           </div>
@@ -168,6 +203,7 @@ useEffect(()=>{
         <button>Add Your valuable Review</button>
       </div>
     </div>
+    </>
   );
 };
 

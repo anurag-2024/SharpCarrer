@@ -2,12 +2,121 @@ body {
   margin: 0;
   padding: 0;
 }
+body.no-scroll {
+  overflow: hidden;
+}
+.blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+.booking_form {
+  z-index: 99;
+  padding: 1rem;
+  width: 30%;
+  background-color: rgba(11, 26, 26, 0.99);
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+  .cross {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    svg {
+      cursor: pointer;
+      color: white;
+      font-size: 1.1rem;
+    }
+  }
+
+  .header {
+    margin-bottom: 10%;
+    width: 70%;
+    text-align: center;
+
+    h2,h4 {
+      margin: 0;
+      color: white;
+    }
+  }
+
+  .inputForm {
+    // margin-bottom: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      label {
+        margin-bottom: 15px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.9rem;
+
+        select,
+        input {
+          margin-top: 5px;
+          padding: 8px;
+          width: 100%;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 0.9rem;
+        }
+
+        select {
+          appearance: none;
+          background-color: white;
+          background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"><path d="M4 6l4 4 4-4z"/></svg>');
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+          background-size: 12px;
+          cursor: pointer;
+        }
+
+        input[type="date"] {
+          padding: 6px;
+        }
+      }
+    }
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+
+    button {
+      background-color: yellow;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: gold;
+      }
+    }
+  }
+}
 .hotel_main {
   width: 100%;
   overflow-y: auto;
   position: relative;
-
   .hotel_Upper {
     height: 300px;
     width: 100%;
@@ -59,7 +168,7 @@ body {
   .hotel_Lower {
     width: 100%;
     display: flex;
-    height: 1300px;
+    // height: 1300px;
     position: relative;
     margin-top: 10px;
 
@@ -68,7 +177,7 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding-top: 8%;
+      // padding-top: 8%;
       align-items: center;
 
       img {
@@ -99,29 +208,35 @@ body {
 
           .left_half {
             width: 49%;
-            height: 79%;
+            // height: 79%;
             background-color: rgb(34, 79, 79);
             padding: 30px;
-            padding-top: 50px;
+            // padding-top: 50px;
             color: white;
             position: relative;
             margin-right: 1%;
-
-            .left_half_book_button {
-              position: absolute;
-              right: 1%;
-              width: 15%;
-              transform: translate(-50%, -50%);
-              background-color: rgb(63, 105, 54);
-              color: black;
-              padding: 10px;
-              padding-left: 20px;
-              padding-right: 20px;
-              border-radius: 15px;
-              text-align: center;
-              border: none;
-              cursor: pointer;
-              text-decoration: none;
+            .texts {
+              width: 100%;
+              height: 100%;
+              h1 {
+                font-size: 1.5rem;
+              }
+              .left_half_book_button {
+                position: absolute;
+                right: 1%;
+                width: 15%;
+                transform: translate(-50%, -50%);
+                background-color: rgb(255, 232, 115);
+                color: black;
+                padding: 10px;
+                //  padding-left: 20px;
+                //  padding-right: 20px;
+                border-radius: 12px;
+                text-align: center;
+                border: none;
+                cursor: pointer;
+                text-decoration: none;
+              }
             }
           }
 
@@ -140,15 +255,15 @@ body {
             .header_right_half {
               height: 10%;
               width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              // display: flex;
+              position: absolute;
+              // justify-content: center;
+              // align-items: center;
             }
 
             .lower_part_right_half {
-              height: 40%;
+              height: 100%;
               width: 100%;
-
               img {
                 width: 100%;
                 height: 100%;
@@ -168,7 +283,7 @@ body {
             line-height: 0%;
 
             img {
-              height: 85%;
+              height: 95%;
               width: 100%;
             }
           }
@@ -179,7 +294,7 @@ body {
             line-height: 0%;
 
             img {
-              height: 85%;
+              height: 100%;
               width: 100%;
             }
           }
@@ -191,15 +306,15 @@ body {
         border: 1px solid black;
         justify-content: space-evenly;
         flex-wrap: wrap;
-        height: 68%;
+        // height: 68%;
         margin-top: 2%;
         width: 99%;
 
         .review {
           width: 31%;
-          height: 48%;
+          height: fit-content;
           background-color: rgb(251, 251, 247);
-          padding: 20px;
+          // padding: 20px;
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
@@ -214,18 +329,18 @@ body {
           }
 
           .msg-icons {
-            margin-bottom: 0.5rem;
+            // margin-bottom: 0.5rem;
             font-size: 2rem;
           }
 
           p {
-            margin-bottom: 1.5rem;
+            // margin-bottom: 1.5rem;
             text-align: center;
           }
 
           strong {
             display: block;
-            margin-bottom: 1rem;
+            // margin-bottom: 1rem;
           }
         }
       }
