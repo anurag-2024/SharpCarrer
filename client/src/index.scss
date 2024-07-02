@@ -1,8 +1,9 @@
 $dark: #123;
-$primary: rgb(10, 74, 74);
+$primary: #154858;
+$border-radius: 8pt;
 
 body {
-  font-family: Georgia, Sans-Serif, Serif !important;
+  // font-family: Georgia, Sans-Serif, Serif !important;
 }
 
 @import 'bootstrap/scss/bootstrap';

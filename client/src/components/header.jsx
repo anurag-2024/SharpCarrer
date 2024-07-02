@@ -28,8 +28,8 @@ const Header = () => {
             <Nav.Link href="/services" active={ pathStartsWith('/services') }>Services</Nav.Link>
             <Nav.Link href="/reviews" active={ pathStartsWith('/reviews') }>Reviews</Nav.Link>
             <div className="my-3 my-lg-0">
-              <a href="/signup" className="btn btn-primary rounded-4 mx-1">Sign Up</a>
-              <a href="/signin" className="btn btn-outline-dark mx-1 rounded-4">Sign In</a>
+              <a href="/signup" className="btn btn-primary mx-1">Sign Up</a>
+              <a href="/signin" className="btn btn-outline-dark mx-1">Sign In</a>
             </div>
           </Nav>
         </Navbar.Collapse>
