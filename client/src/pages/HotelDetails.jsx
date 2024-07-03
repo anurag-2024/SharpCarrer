@@ -25,6 +25,8 @@ const HotelDetails = () => {
   const { id } = useParams();
   const token=localStorage.getItem('token');
   const hotel = hotels?.find(hotel => hotel?._id === id);
+  const hotelreviews=reviews?.filter(review=>review?.Hotel_id===id);
+  console.log(reviews,hotelreviews);
   const [isbook, setisBook] = useState(false);
   const [isreview,setisReview]=useState(false);
   const defaultroom = hotel?.Room_types[0]?.Type;
@@ -76,7 +78,7 @@ const HotelDetails = () => {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
-    script.onload = () => { };
+    script.onload = () => {};
     document.body.appendChild(script);
   };
 
@@ -304,9 +306,9 @@ const HotelDetails = () => {
                 </div>
               </div>
             </div>
-            {reviews.length > 0 &&
+            {hotelreviews?.length > 0 &&
               <div className="bottom">
-                {reviews?.map((review, index) => (
+                {hotelreviews?.map((review, index) => (
                   <div key={index} className="review">
                     <div className="msg-icons">
                       <FontAwesomeIcon
@@ -314,10 +316,10 @@ const HotelDetails = () => {
                         className="feedback-icon"
                       />
                     </div>
-                    <p>{review.message}</p>
-                    <strong>{review.name}</strong>
+                    <p>{review.Review_text}</p>
+                    <strong>{review.UserName}</strong>
                     <div className="star-icons">
-                      {[...Array(review.rating)].map((_, i) => (
+                      {[...Array(review.Rating)].map((_, i) => (
                         <FontAwesomeIcon key={i} icon={faStar} />
                       ))}
                     </div>
