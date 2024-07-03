@@ -25,12 +25,12 @@ Welcome to the Hotel Booking Platform! This web application allows users to regi
    ```bash
    git clone https://github.com/yourusername/hotel-booking-platform.git
    cd hotel-booking-platform```
-   
+
 2. **Install dependencies**
-    npm install
+    ```npm install
     cd client
     npm install
-    cd ..
+    cd ..```
 
 3. **Environment Variables**
    Create a .env file in the root directory with the following variables:
@@ -40,6 +40,7 @@ Welcome to the Hotel Booking Platform! This web application allows users to regi
         RAZORPAY_KEY_SECRET=your_razorpay_key_secret```
 
 4. **Start the server**
+
      ```nodemon server.js```
 
 5. **Start the client**
