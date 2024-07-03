@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./styles/Explore.scss";
 import img1 from "../assets/images/mumbai_e.jpg";
 import img2 from "../assets/images/delhi_e.jpg";
 import img3 from "../assets/images/bangalore_e.jpg";
 import Typed from 'typed.js';
 import { Link } from "react-router-dom";
-import  hotels from "../data/hotels.js";
+import { UserContext } from "../context/UserContext";
 import HotelCard from "../components/HotelCard.jsx";
 const Explore = () => {
+  const {hotels} = useContext(UserContext);
   const el = React.useRef(null);
   React.useEffect(() => {
     const typed = new Typed(el.current, {
@@ -24,12 +25,12 @@ const Explore = () => {
   }, []);
   const [page, setPage] = useState(0);
   const hotelsPerPage = 8;
-  const pageCount = Math.ceil(hotels.length / hotelsPerPage);
+  const pageCount = Math.ceil(hotels?.length / hotelsPerPage);
 
   const getCurrentHotels = () => {
     const startIndex = page * hotelsPerPage;
     const endIndex = startIndex + hotelsPerPage;
-    return hotels.slice(startIndex, endIndex);
+    return hotels?.slice(startIndex, endIndex);
   };
 
   return (
@@ -49,12 +50,12 @@ const Explore = () => {
         </div>
       </div>
       <div className="explore_hotels">
-        {getCurrentHotels().map((hotel, index) => (
+        {getCurrentHotels()?.map((hotel, index) => (
           <HotelCard hotel={hotel} index={index} />
         ))}
       </div>
       <div className="pagination">
-        {[...Array(pageCount).keys()].map(number => (
+        {pageCount && [...Array(pageCount).keys()].map(number => (
           <span
             key={number}
             onClick={() => setPage(number)}

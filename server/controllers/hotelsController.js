@@ -2,7 +2,7 @@
  * @module 	roomsController
  */
 
-import Hotel from "../models/Hotel.model";
+import Hotel from "../models/Hotel.model.js";
 
 /**
  * Add room data to database.

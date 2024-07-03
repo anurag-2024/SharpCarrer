@@ -4,7 +4,7 @@
 
 import express from 'express';
 import { check } from 'express-validator';
-import { getBookings, getBooking, createBooking, cancelBooking, getPaymentStatus } from '../controllers/bookingsController.js';
+import { getBookings, getBooking, createBooking, cancelBooking, getPaymentStatus,sucessBooking } from '../controllers/bookingsController.js';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -29,7 +29,7 @@ router.get('/:id', authenticateToken, getBooking);
  * @route 	{POST} /bookings/add
  */
 router.post('/add', authenticateToken, createBooking);
-
+router.put('/:id/success',sucessBooking);
 /**
  * Route to cancel booking
  * 

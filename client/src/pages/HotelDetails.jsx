@@ -1,32 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import "./styles/HotelDetails.scss";
-import hotelImg1 from "../assets/images/hotel_img1.jpg";
 import hotelImg2 from "../assets/images/hotel_img2.jpg";
 import img1 from "../assets/images/hotel_smaller3.jpg";
 import img2 from "../assets/images/aboutus_1.jpg";
 import img3 from "../assets/images/aboutus_3.jpg";
 import img4 from "../assets/images/hotel_smaller1.jpg";
-import img5 from "../assets/images/aboutus_1.jpg";
 import rowImg1 from "../assets/images/hotel_smaller1.jpg";
 import rowImg2 from "../assets/images/aboutus_3.jpg";
 import rowImg3 from "../assets/images/hotel_smaller3.jpg";
 import rowImg4 from "../assets/images/aboutus_1.jpg";
-import room3 from "../assets/images/room (3).jpg";
-import room2 from "../assets/images/room (2).jpg";
-import room1 from "../assets/images/room (1).jpg";
 import { reviews } from "../data/reviews";
 import { ImCross } from "react-icons/im";
+import { UserContext } from "../context/UserContext";
+import { useParams,useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { URL } from "../utils/url";
+import axios from "axios";
 const HotelDetails = () => {
+  const navigate=useNavigate();
+  const { hotels } = useContext(UserContext);
+  const { id } = useParams();
+  const token=localStorage.getItem('token');
+  const hotel = hotels?.find(hotel => hotel?._id === id);
   const [isbook, setisBook] = useState(false);
+  const defaultroom = hotel?.Room_types[0]?.Type;
+  const defaultprice=hotel?.Room_types[0]?.Price;
   const [guestDetails, setGuestDetails] = useState({
-    roomType: 'deluxe',
+    roomType: defaultroom,
     adults: '1',
     children: '0',
     checkin: '',
-    checkout: ''
+    checkout: '',
+    price:defaultprice
   });
+  useEffect(()=>{
+    setGuestDetails((prevDetails) => ({
+      ...prevDetails,
+      roomType: defaultroom,
+      price: defaultprice,
+    }));
+  },[defaultprice,defaultroom]);
+  useEffect(() => {
+    const selectedRoom = hotel?.Room_types.find(
+      (room) => room.Type === guestDetails.roomType
+    );
+    if (selectedRoom) {
+      setGuestDetails((prevDetails) => ({
+        ...prevDetails,
+        price: selectedRoom.Price,
+      }));
+    }
+  }, [guestDetails.roomType]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setGuestDetails((prevDetails) => ({
@@ -34,13 +60,138 @@ const HotelDetails = () => {
       [name]: value
     }));
   };
+ const emptyForm=()=>{
+  setGuestDetails({
+    roomType: defaultroom,
+    adults: '1',
+    children: '0',
+    checkin: '',
+    checkout: '',
+    price:defaultprice
+  })
+ }
+  const loadRazorpayScript = async () => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => { };
+    document.body.appendChild(script);
+  };
+
   useEffect(() => {
-    if (isbook) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
+    loadRazorpayScript();
+  }, []);
+
+  const handleProceed = async (price,id) => {
+    try {
+      const response = await axios.post(`${URL}/payment/addBooking`, {
+        price,
+      });
+      initPayment(response.data,id);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+      emptyForm();
+      setisBook(!isbook);
     }
-  }, [isbook]);
+  };
+  const initPayment = (data,id) => {
+    const options = {
+      key: "rzp_test_S7O9aeETo3NXrl",
+      amount: data.amount,
+      currency: data.currency,
+      order_id: data.orderDetails.razorpayOrderId,
+      handler: async (response) => {
+        try {
+          const verifyUrl = `${URL}/payment/verify`;
+          const verifyData = {
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+          };
+          try {
+            const res = await axios.post(verifyUrl, verifyData);
+            if (res.status === 200) {
+              try{
+                const res = await axios.put(`${URL}/bookings/${id}/success`);
+                if (res.status === 200) {
+                  toast.success(res.data.message);
+                  emptyForm();
+                  setisBook(!isbook);
+                }
+              }
+              catch(err){
+                console.log(err);
+                toast.error(err.response.data.message);
+                emptyForm();
+                setisBook(!isbook);
+              }
+            }
+          } catch (err) {
+            toast.error(err.response.data.message);
+            emptyForm();
+            setisBook(!isbook);
+          }
+        } catch (err) {
+          toast.error(err.response.data.message);
+          emptyForm();
+          console.log(err);
+        }
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+  const calculateNights = (checkin, checkout) => {
+    const oneDay = 24 * 60 * 60 * 1000; 
+    const firstDate = new Date(checkin);
+    const secondDate = new Date(checkout);
+
+    const nights = Math.round(
+      Math.abs((firstDate - secondDate) / oneDay)+1
+    );
+    return nights;
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+       if(!guestDetails.checkin||!guestDetails.checkout){
+        toast.error('Please fill all the fields');
+        return;
+       }
+      if (guestDetails.checkin > guestDetails.checkout) {
+        toast.error('Check-in must be before check-out');
+        return;
+      }
+      if(!token||token===null||token===undefined){
+        toast.error('Please signin first');
+        setTimeout(()=>{
+          navigate('/signin');
+        },1500)
+        return;
+      } 
+      const guest=Number(guestDetails.adults) + Number(guestDetails.children);
+      const res = await axios.post(`${URL}/bookings/add`, { Hotel_id: id, Check_in_date: guestDetails.checkin, Check_out_date: guestDetails.checkout, Room_type: guestDetails.roomType, guestSize: guest }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      if (res.status === 201) {
+        const nights=calculateNights(guestDetails.checkin,guestDetails.checkout);
+        const price=Number(guestDetails.price)*nights;
+        handleProceed(price,res.data.id);
+      }
+    }
+    catch (err) {
+      toast.error(err.response.data.message);
+      console.log(err);
+      emptyForm();
+      setisBook(!isbook);
+    }
+  }
   return (
     <>
       {isbook &&
@@ -53,12 +204,15 @@ const HotelDetails = () => {
             <h4>Book your stay today!</h4>
           </div>
           <div className="inputForm">
-            <form>
+            <form onSubmit={handleSubmit}>
               <label>
                 Room Type:
                 <select name="roomType" value={guestDetails.roomType} onChange={handleChange}>
-                  <option value="deluxe">Deluxe</option>
-                  <option value="family">Family Suite</option>
+                  {hotel?.Room_types?.map((room, index) => {
+                    return (
+                      <option value={`${room?.Type}`}>{`${room.Type}`} for  &#8377;{`${room.Price}`}</option>
+                    )
+                  })}
                 </select>
               </label>
               <label>
@@ -86,10 +240,10 @@ const HotelDetails = () => {
                 Check-out Date:
                 <input type="date" name="checkout" value={guestDetails.checkout} onChange={handleChange} />
               </label>
+              <div className="btn">
+                <button type='submit'>Proceed</button>
+              </div>
             </form>
-          </div>
-          <div className="btn">
-            <button type='submit'>Proceed</button>
           </div>
         </div>
       }
@@ -98,7 +252,7 @@ const HotelDetails = () => {
       <div className={isbook ? 'hotel_main blur' : 'hotel_main'}>
         <div className="hotel_Upper">
           <div className="left_1">
-            <img src={hotelImg1} alt="Hotel Image 1" />
+            <img src={hotel?.Photos[0]} alt="Hotel Image 1" />
             <button className="book-button" onClick={() => setisBook(!isbook)}>
               Book Now
             </button>
@@ -119,14 +273,9 @@ const HotelDetails = () => {
               <div className="hotel_details">
                 <div className="left_half">
                   <div className="texts">
-                    <h1>Our Luxurious Rooms</h1>
+                    <h1>{hotel?.Hotel_name}</h1>
                     <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Quod, amet? Perspiciatis est magnam, molestiae libero
-                      necessitatibus officia repellendus fuga sunt, ex nisi
-                      similique asperiores nobis illo? Aspernatur sequi debitis
-                      nesciunt cumque sapiente ducimus, veniam maiores numquam ab
-
+                      {hotel?.Description}
                     </p>
                     <button className="left_half_book_button" onClick={() => setisBook(!isbook)}>
                       Book Now
@@ -134,27 +283,23 @@ const HotelDetails = () => {
                   </div>
                 </div>
                 <div className="right_half">
-                  {/* <div className="upper_part_right_half"></div> */}
-                  {/* <div className="header_right_half">
-                  <h3>Deluxe Rooms Twin Bed</h3>
-                </div> */}
                   <div className="lower_part_right_half">
-                    <img src={room1} alt="Room 1" />
+                    <img src={hotel?.Photos[1]} alt="Room 1" />
                   </div>
                 </div>
               </div>
               <div className="hotel_images">
                 <div className="upper_contain">
-                  <img src={room2} alt="Room 2" />
+                  <img src={hotel?.Photos[2]} alt="Room 2" />
                   {/* <p>Deluxe Room</p> */}
                 </div>
                 <div className="lower_contain">
-                  <img src={room3} alt="Room 3" />
+                  <img src={hotel?.Photos[3]} alt="Room 3" />
                   {/* <p>Family Suite</p> */}
                 </div>
               </div>
             </div>
-            {reviews.length>0 &&
+            {reviews.length > 0 &&
               <div className="bottom">
                 {reviews?.map((review, index) => (
                   <div key={index} className="review">

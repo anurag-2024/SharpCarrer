@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
-import { ChevronDown } from 'react-bootstrap-icons';
 import logo from '../assets/logo.png';
 import { UserContext } from '../context/UserContext';
 

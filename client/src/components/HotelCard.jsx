@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./styles/HotelCard.scss"
 const HotelCard = ({hotel,index}) => {
-    console.log(hotel)
     return (
         <>
             <div
@@ -10,13 +9,13 @@ const HotelCard = ({hotel,index}) => {
                 key={index}
             >
                 <div className="hotel_image">
-                    <Link to={`/explore/hotel/${index}`}>
+                    <Link to={`/explore/hotel/${hotel?._id}`}>
                         <img src={hotel.Photos[0]} alt="Hotel" />
                     </Link>
                 </div>
                 <div className="hotel_info">
                     <div className="upper">
-                        <Link to={`/explore/hotel/${index}`} style={{ textDecoration: "none" }}>
+                        <Link to={`/explore/hotel/${hotel?._id}`} style={{ textDecoration: "none" }}>
                             <div>
                                 <p>{hotel.Hotel_name}</p>
                             </div>
@@ -31,7 +30,7 @@ const HotelCard = ({hotel,index}) => {
                             <p>{hotel.Location}</p>
                         </div>
                         <div>
-                            <Link to={`/explore/hotel/${index}`}>
+                            <Link to={`/explore/hotel/${hotel?._id}`}>
                                 <button>
                                     Explore
                                 </button>

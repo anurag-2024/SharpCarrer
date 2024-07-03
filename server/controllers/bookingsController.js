@@ -20,14 +20,9 @@ export const createBooking = async (req, res) => {
 	
 	Check_in_date = new Date(Check_in_date);
 	Check_out_date = new Date(Check_out_date);
-
-	if (Check_in_date.getTime() > Check_out_date.getTime()) {
-		return res.status(400).json({ message: 'Check-out date must be after check-in date'} );
-	}
-
 	try {
 		const newBooking = await Booking.create({ User_id, Hotel_id, Check_in_date, Check_out_date,Room_type,guestSize });
-		res.status(201).json(newBooking);
+		res.status(201).send({message:"Booking Created",id:newBooking._id});
 	} catch (err) {
 		res.status(400).json({ message: err.message });
 	}
@@ -140,5 +135,21 @@ export const getPaymentStatus = async (req, res) => {
 		res.status(200).json(payment);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
+	}
+}
+
+
+export const sucessBooking =async(req,res)=>{
+    try{
+		const id=req.params.id;
+		const booking=await Booking.findById(id);
+		if(!booking){
+			return res.status(400).send({message:"Booking not Found"});
+		}
+		await Booking.findByIdAndUpdate(id, { Booking_status: "Confirmed", Payment_status: "Paid" });
+		return res.status(200).send({message:"Booked succesfully"});
+	}
+	catch(err){
+		return res.status(500).send({message:"Internal Server Error"});
 	}
 }

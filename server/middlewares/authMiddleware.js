@@ -3,7 +3,6 @@
  */
 
 import jwt from 'jsonwebtoken';
-import mongoose from 'mongoose';
 import User from '../models/User.model.js';
 
 /**
@@ -15,9 +14,14 @@ import User from '../models/User.model.js';
 export const authenticateToken = (req, res, next) => {
 	const token=req.headers?.authorization?.split(" ")[1];
 	if(!token) return res.status(401).json({message:"Access Denied"});
-	const decodedToken=jwt.verify(token,process.env.JWT_SECRET)
-	req.user=decodedToken;
-	next();
+	try{
+		const decodedToken=jwt.verify(token,process.env.JWT_SECRET);
+		req.user=decodedToken;
+        next();
+	}
+	catch(err){
+		return res.status(500).send({message:"JWT Expired or Invalid Token so, Please login again"});
+	}
 }
 
 /**

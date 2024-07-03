@@ -1,10 +1,12 @@
 import React, { useState, useContext, Children, useEffect } from 'react';
 import axios from 'axios';
 import { URL } from '../utils/url';
+import {toast} from 'react-toastify';
 export const UserContext=React.createContext();
 
 export const UserProvider=({children})=>{
     const [user,setuser]=useState();
+    const [hotels,setHotels]=useState();
     const [token,settoken]=useState(localStorage.getItem('token') || null);
     const getUser=async()=>{
         try{ 
@@ -17,15 +19,28 @@ export const UserProvider=({children})=>{
             setuser(res.data);
         }   
         catch(err){
+            toast.error(res.response.data.message);
             console.log(err);
+        }
+    }
+    const getHotel=async()=>{
+        try{
+            const res=await axios.get(`${URL}/hotel`);
+            console.log(res.data);
+            setHotels(res.data);
+        }
+        catch(err){
+            console.log(err);
+            toast.error(err.response.data.message);
         }
     }
     useEffect(()=>{
         getUser();
+        getHotel();
         if(!token) settoken(localStorage.getItem('token'));
     },[token])
     return (
-        <UserContext.Provider value={{user}}>
+        <UserContext.Provider value={{user,hotels}}>
             {children}
         </UserContext.Provider>
     )
