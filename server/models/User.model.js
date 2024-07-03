@@ -30,7 +30,6 @@ const UserSchema = mongoose.Schema({
 	},
 	Address: {
 		type: String,
-		default: "non specified"
 	},
 	Booking_history: {
 		type: [mongoose.Schema.Types.ObjectId],

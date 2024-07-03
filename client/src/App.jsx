@@ -11,7 +11,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Explore from "./pages/Explore";
 import HotelDetails from "./pages/HotelDetails";
-
+import Profile from "./pages/Profile";
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +26,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/explore/hotel/:id" element={<HotelDetails />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>

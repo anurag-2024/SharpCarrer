@@ -89,3 +89,24 @@ export const getUser=async(req,res)=>{
 		return res.status(500).send({message:'Internal Server error'});
 	}
 }
+
+export const updateUser=async(req,res)=>{
+	try{
+		const {userName,Email,Contact_no,Address}=req.body;
+		console.log("yayah")
+		const user=await User.findById(req.user.id);
+		console.log(user);
+		if(!user){
+			return res.status(400).send({message:"User Not found"});
+		}
+		const updatedUser = await User.findByIdAndUpdate(req.user.id, { userName, Email, Contact_no, Address });
+    if (!updatedUser) {
+        throw new Error('User not found');
+    }
+		return res.status(200).send({message:"Updated Successfully"});
+
+	}
+	catch(err){
+		res.status(500).send(err);
+	}
+}

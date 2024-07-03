@@ -37,9 +37,8 @@ export const createBooking = async (req, res) => {
  * @return 	{Object} - JSON object of all bookings created by authentified user
  */
 export const getBookings = async (req, res) => {
-	const { user } = req.payload;
 	try {
-		const User_id = user.id;
+		const User_id = req.user.id;
 		const bookings = await Booking.find({ User_id });
 		res.status(200).json(bookings);
 	} catch (err) {
