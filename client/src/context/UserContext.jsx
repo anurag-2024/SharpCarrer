@@ -42,9 +42,11 @@ export const UserProvider=({children})=>{
         }
     }
     useEffect(()=>{
+       getHotel();
+       getReviews();
+    },[])
+    useEffect(()=>{
         getUser();
-        getHotel();
-        getReviews();
         if(!token) settoken(localStorage.getItem('token'));
     },[token])
     return (
