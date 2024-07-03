@@ -11,20 +11,22 @@ import rowImg1 from "../assets/images/hotel_smaller1.jpg";
 import rowImg2 from "../assets/images/aboutus_3.jpg";
 import rowImg3 from "../assets/images/hotel_smaller3.jpg";
 import rowImg4 from "../assets/images/aboutus_1.jpg";
-import { reviews } from "../data/reviews";
+
 import { ImCross } from "react-icons/im";
 import { UserContext } from "../context/UserContext";
 import { useParams,useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { URL } from "../utils/url";
 import axios from "axios";
+import ReviewCard from "../components/ReviewCard";
 const HotelDetails = () => {
   const navigate=useNavigate();
-  const { hotels } = useContext(UserContext);
+  const { hotels ,reviews} = useContext(UserContext);
   const { id } = useParams();
   const token=localStorage.getItem('token');
   const hotel = hotels?.find(hotel => hotel?._id === id);
   const [isbook, setisBook] = useState(false);
+  const [isreview,setisReview]=useState(false);
   const defaultroom = hotel?.Room_types[0]?.Type;
   const defaultprice=hotel?.Room_types[0]?.Price;
   const [guestDetails, setGuestDetails] = useState({
@@ -194,6 +196,9 @@ const HotelDetails = () => {
   }
   return (
     <>
+    {isreview &&
+      <ReviewCard setisReview={setisReview} />
+    }
       {isbook &&
         <div className="booking_form">
           <div className="cross">
@@ -249,7 +254,7 @@ const HotelDetails = () => {
       }
 
 
-      <div className={isbook ? 'hotel_main blur' : 'hotel_main'}>
+      <div className={isbook||isreview ? 'hotel_main blur' : 'hotel_main'}>
         <div className="hotel_Upper">
           <div className="left_1">
             <img src={hotel?.Photos[0]} alt="Hotel Image 1" />
@@ -329,7 +334,7 @@ const HotelDetails = () => {
           <img src={rowImg4} alt="Row Image 4" />
         </div>
         <div className="addreview">
-          <button>Add Your valuable Review</button>
+          <button onClick={()=>setisReview(!isreview)}>Add Your valuable Review</button>
         </div>
       </div>
     </>

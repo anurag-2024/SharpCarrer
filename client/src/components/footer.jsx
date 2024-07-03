@@ -23,6 +23,7 @@ const Footer = () => {
   const handleClick = () => {
     window.scrollTo(0, 0, 'smooth');
   }
+  const year=new Date().getFullYear();
   return (
     <>
       <div className="bg-dark py-5">
@@ -86,7 +87,7 @@ const Footer = () => {
             </Col>
           </Row>
           <p className="text-center text-light">
-            <small>© 2024. All rights reserved.</small>
+            <small>&copy; {year} All rights reserved.</small>
           </p>
         </Container>
       </div>

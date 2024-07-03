@@ -1,12 +1,8 @@
 import React from "react";
-// import "./styles/About.scss";
 import img1 from "../assets/images/img1.jpeg";
 import img2 from "../assets/images/img2.jpeg";
 import img3 from "../assets/images/img3.jpeg";
 import img4 from "../assets/images/img4.jpeg";
-import staff from "../assets/images/staff.png";
-import client from "../assets/images/client.png";
-import room from "../assets/images/room.png";
 import { Row, Col, Container } from 'react-bootstrap';
 import * as Icon from 'react-bootstrap-icons';
 

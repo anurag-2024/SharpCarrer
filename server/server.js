@@ -7,6 +7,7 @@ import hotelRouter from './routes/hotelRouter.js'
 import bookingsRouter from './routes/bookingsRouter.js';
 import userRouter from './routes/userRoutes.js';
 import paymentRouter from './routes/paymentRouter.js'
+import reviewRoter from './routes/reviewRouter.js'
 import morgan from 'morgan';
 dotenv.config(); 
 
@@ -22,6 +23,7 @@ app.use('/api/hotel', hotelRouter);
 app.use('/api/bookings', bookingsRouter);
 app.use('/api/user', userRouter);
 app.use('/api/payment',paymentRouter);
+app.use('/api/review',reviewRoter);
 
 const PORT = process.env.PORT || 5000;
 

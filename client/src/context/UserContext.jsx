@@ -7,6 +7,7 @@ export const UserContext=React.createContext();
 export const UserProvider=({children})=>{
     const [user,setuser]=useState();
     const [hotels,setHotels]=useState();
+    const [reviews,setReviews]=useState();
     const [token,settoken]=useState(localStorage.getItem('token') || null);
     const getUser=async()=>{
         try{ 
@@ -34,13 +35,25 @@ export const UserProvider=({children})=>{
             toast.error(err.response.data.message);
         }
     }
+    const getReviews=async()=>{
+        try{
+            const res=await axios.get(`${URL}/review`);
+            console.log(res.data);
+            setReviews(res.data);
+        }
+        catch(err){
+            console.log(err);
+            toast.error(err.response.data.message);
+        }
+    }
     useEffect(()=>{
         getUser();
         getHotel();
+        getReviews();
         if(!token) settoken(localStorage.getItem('token'));
     },[token])
     return (
-        <UserContext.Provider value={{user,hotels}}>
+        <UserContext.Provider value={{user,hotels,reviews}}>
             {children}
         </UserContext.Provider>
     )
