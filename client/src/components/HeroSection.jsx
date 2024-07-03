@@ -25,7 +25,6 @@ const HeroSection = () => {
       toast.error('Please enter a destination');
       return;
     }
-    console.log(destination);
   }
   return (
     <section className="hero-section">

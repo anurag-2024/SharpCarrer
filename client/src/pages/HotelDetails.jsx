@@ -26,7 +26,6 @@ const HotelDetails = () => {
   const token=localStorage.getItem('token');
   const hotel = hotels?.find(hotel => hotel?._id === id);
   const hotelreviews=reviews?.filter(review=>review?.Hotel_id===id);
-  console.log(reviews,hotelreviews);
   const [isbook, setisBook] = useState(false);
   const [isreview,setisReview]=useState(false);
   const defaultroom = hotel?.Room_types[0]?.Type;
@@ -93,7 +92,6 @@ const HotelDetails = () => {
       });
       initPayment(response.data,id);
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
       emptyForm();
       setisBook(!isbook);
@@ -125,7 +123,6 @@ const HotelDetails = () => {
                 }
               }
               catch(err){
-                console.log(err);
                 toast.error(err.response.data.message);
                 emptyForm();
                 setisBook(!isbook);
@@ -139,7 +136,6 @@ const HotelDetails = () => {
         } catch (err) {
           toast.error(err.response.data.message);
           emptyForm();
-          console.log(err);
         }
       },
       theme: {
@@ -191,7 +187,6 @@ const HotelDetails = () => {
     }
     catch (err) {
       toast.error(err.response.data.message);
-      console.log(err);
       emptyForm();
       setisBook(!isbook);
     }

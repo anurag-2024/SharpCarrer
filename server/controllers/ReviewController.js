@@ -15,7 +15,6 @@ export const addReview = async (req, res) => {
         await review.save();
         res.status(201).json({ message: "Review added successfully" });
     } catch (err) {
-        console.log(err);
         res.status(500).send({message: "Server error"});
     }
 }

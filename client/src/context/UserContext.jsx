@@ -21,28 +21,23 @@ export const UserProvider=({children})=>{
         }   
         catch(err){
             toast.error(res.response.data.message);
-            console.log(err);
         }
     }
     const getHotel=async()=>{
         try{
             const res=await axios.get(`${URL}/hotel`);
-            console.log(res.data);
             setHotels(res.data);
         }
         catch(err){
-            console.log(err);
             toast.error(err.response.data.message);
         }
     }
     const getReviews=async()=>{
         try{
             const res=await axios.get(`${URL}/review`);
-            console.log(res.data);
             setReviews(res.data);
         }
         catch(err){
-            console.log(err);
             toast.error(err.response.data.message);
         }
     }

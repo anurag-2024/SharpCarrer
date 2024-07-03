@@ -38,7 +38,6 @@ const Profile = () => {
                 setBookings(res.data);
             }
         } catch (err) {
-            console.log(err);
             toast.error('Failed to fetch bookings');
         }
     };
@@ -65,7 +64,6 @@ const Profile = () => {
                 }, 1000);
             }
         } catch (err) {
-            console.log(err);
             toast.error('Failed to update profile');
         }
     };

@@ -62,7 +62,6 @@ const ReviewCard = ({ setisReview }) => {
             } else {
                 toast.error('An error occurred while submitting your review.');
             }
-            console.log(err);
             setisReview(false);
         }
     };

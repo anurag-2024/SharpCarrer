@@ -99,8 +99,6 @@ export const cancelBooking = async (req, res) => {
 		const updatedBooking = await booking.save();
 
 		res.status(201).json(updatedBooking);
-		
-		console.log('Booking cancelled:', updatedBooking);
 	} catch (err) {
 		res.status(400).json({ message: err.message });
 	}
