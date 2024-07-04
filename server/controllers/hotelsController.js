@@ -92,3 +92,44 @@ export const searchHotels =async(req,res)=>{
 		res.status(500).json({message:"Internal Server Error"});
 	}
 }
+
+export const updateavailability=async(req,res)=>{
+	try{
+		const {Room_Type,newAvailablity}=req.body;
+		const hotel = await Hotel.findById(req.params.id);
+		if (!hotel) {
+			return res.status(404).json({ message: 'Hotel not found' });
+		}
+		const room=hotel?.Room_types.find(room=>room.Type===Room_Type);
+		if(!room){
+			return res.status(404).json({ message: 'Room not found' });
+		}
+		room.Availability=newAvailablity;
+		console.log(hotel);
+		await hotel.save();
+		res.status(200).json({message:"Room availability updated successfully"});
+	}
+	catch(err){
+		res.status(500).json({message:"Internal Server Error"});
+	}
+}
+
+export const updateHotel = async (req, res) => {
+	try {
+	  const { id } = req.params;
+	  const updatedData = req.body;
+	  const hotel = await Hotel.findById(id);
+	  if (!hotel) {
+		return res.status(404).json({ message: 'Hotel not found' });
+	  }
+	  for (const key in updatedData) {
+		if (updatedData.hasOwnProperty(key)) {
+		  hotel[key] = updatedData[key];
+		}
+	  }
+	  await hotel.save();
+	  res.status(200).json({ message: 'Hotel details updated successfully', hotel });
+	} catch (err) {
+	  res.status(500).json({ message: 'Internal Server Error', error: err.message });
+	}
+  };

@@ -14,7 +14,7 @@ const TopHotels = () => {
                 <div className='explore_hotels'>
                     {tophotels?.map((hotel, index) => {
                         return (
-                           <HotelCard hotel={hotel} index={index}/>
+                           <HotelCard hotel={hotel} key={index} index={index}/>
                         )
                     })}
                 </div>

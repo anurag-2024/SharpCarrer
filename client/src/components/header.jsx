@@ -6,7 +6,7 @@ import { UserContext } from '../context/UserContext';
 
 const Header = () => {
   const location = useLocation();
-  const { user } = useContext(UserContext);
+  const { user ,role} = useContext(UserContext);
 
   const pathIs = (path) => location.pathname === path;
 
@@ -26,12 +26,15 @@ const Header = () => {
         <Navbar.Toggle aria-controls="navbarNav" />
         <Navbar.Collapse id="navbarNav" className="justify-content-center justify-content-lg-end">
           <Nav className="align-items-center">
-            <Nav.Link as={NavLink} to="/" isActive={pathIs('/')}>Home</Nav.Link>
-            <Nav.Link as={NavLink} to="/about" isActive={pathStartsWith('/about')}>About</Nav.Link>
-            <Nav.Link as={NavLink} to="/accomodation" isActive={pathStartsWith('/accomodation')}>Accomodation</Nav.Link>
-            <Nav.Link as={NavLink} to="/explore" isActive={pathStartsWith('/explore')}>Explore</Nav.Link>
-            <Nav.Link as={NavLink} to="/services" isActive={pathStartsWith('/services')}>Services</Nav.Link>
-            <Nav.Link as={NavLink} to="/reviews" isActive={pathStartsWith('/reviews')}>Reviews</Nav.Link>
+            <Nav.Link as={NavLink} to="/" isactive={pathIs('/').toString()}>Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/about" isactive={pathStartsWith('/about').toString()}>About</Nav.Link>
+            <Nav.Link as={NavLink} to="/accomodation" isactive={pathStartsWith('/accomodation').toString()}>Accomodation</Nav.Link>
+            <Nav.Link as={NavLink} to="/explore" isactive={pathStartsWith('/explore').toString()}>Explore</Nav.Link>
+            <Nav.Link as={NavLink} to="/services" isactive={pathStartsWith('/services').toString()}>Services</Nav.Link>
+            <Nav.Link as={NavLink} to="/reviews" isactive={pathStartsWith('/reviews').toString()}>Reviews</Nav.Link>
+            {role==='admin'&& 
+              <Nav.Link as={NavLink} to="/admin" isactive={pathStartsWith('/admin').toString()}>Admin</Nav.Link>
+            }
             <div className="my-3 my-lg-0">
               {user ? (
                 <Dropdown align="end" className="d-inline">

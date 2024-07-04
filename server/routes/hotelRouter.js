@@ -1,5 +1,5 @@
 import express from 'express';
-import { getHotels, getHotel, searchHotels } from '../controllers/hotelsController.js';
+import { getHotels, getHotel, searchHotels,updateavailability,updateHotel} from '../controllers/hotelsController.js';
 
 const router = express.Router();
 
@@ -23,5 +23,7 @@ router.get('/:id', getHotel);
  * @route {GET} /api/hotels
  */
 router.get('/', getHotels);
+router.put('/availability/:id', updateavailability);
+router.put('/update/:id',updateHotel);
 
 export default router;

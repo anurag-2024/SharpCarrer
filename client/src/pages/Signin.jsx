@@ -6,8 +6,9 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { URL } from '../utils/url';
 import { UserContext } from '../context/UserContext';
+import {jwtDecode} from 'jwt-decode';
 const Signin = () => {
-  const {setuser}=useContext(UserContext);
+  const {setuser,role,setrole}=useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -19,8 +20,11 @@ const Signin = () => {
       if(res.status===200){
         toast.success('Logged in Successfully');
         localStorage.setItem('token',res.data.token);
+        const decodedToken = jwtDecode(res.data.token);
+        setrole(decodedToken.role);
         setuser(res.data.user);
-        navigate('/');
+        if(decodedToken.role==='admin') navigate('/admin');
+        else navigate('/');
       }
     }
     catch(err){

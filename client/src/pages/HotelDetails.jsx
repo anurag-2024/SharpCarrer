@@ -25,6 +25,7 @@ const HotelDetails = () => {
   const { id } = useParams();
   const token=localStorage.getItem('token');
   const hotel = hotels?.find(hotel => hotel?._id === id);
+  console.log(hotel)
   const hotelreviews=reviews?.filter(review=>review?.Hotel_id===id);
   const [isbook, setisBook] = useState(false);
   const [isreview,setisReview]=useState(false);
@@ -85,19 +86,19 @@ const HotelDetails = () => {
     loadRazorpayScript();
   }, []);
 
-  const handleProceed = async (price,id) => {
+  const handleProceed = async (price,id,hotelId) => {
     try {
       const response = await axios.post(`${URL}/payment/addBooking`, {
         price,
       });
-      initPayment(response.data,id);
+      initPayment(response.data,id,hotelId);
     } catch (error) {
       toast.error(error.response.data.message);
       emptyForm();
       setisBook(!isbook);
     }
   };
-  const initPayment = (data,id) => {
+  const initPayment = (data,id,hotelId) => {
     const options = {
       key: "rzp_test_S7O9aeETo3NXrl",
       amount: data.amount,
@@ -114,19 +115,29 @@ const HotelDetails = () => {
           try {
             const res = await axios.post(verifyUrl, verifyData);
             if (res.status === 200) {
-              try{
-                const res = await axios.put(`${URL}/bookings/${id}/success`);
-                if (res.status === 200) {
-                  toast.success(res.data.message);
-                  emptyForm();
-                  setisBook(!isbook);
+                try{
+                  const room=hotel?.Room_types.find(room=>room.Type===guestDetails.roomType);
+                  const res=await axios.put(`${URL}/hotel/availability/${hotelId}`,{Room_Type:guestDetails.roomType,newAvailablity:room.Availability-1});
+                  if(res.status===200){
+                    try{
+                      const res = await axios.put(`${URL}/bookings/${id}/success`);
+                      if (res.status === 200) {
+                        toast.success(res.data.message);
+                        emptyForm();
+                        setisBook(!isbook);
+                      }
+                    }
+                    catch(err){
+                      toast.error(err.response.data.message);
+                      emptyForm();
+                      setisBook(!isbook);
+                    }
+                  }
                 }
-              }
-              catch(err){
-                toast.error(err.response.data.message);
-                emptyForm();
-                setisBook(!isbook);
-              }
+                catch(err){
+                  toast.error(err.response.data.message);
+                  console.log(err);
+                }
             }
           } catch (err) {
             toast.error(err.response.data.message);
@@ -173,6 +184,11 @@ const HotelDetails = () => {
         },1500)
         return;
       } 
+      const room=hotel?.Room_types.find(room=>room.Type===guestDetails.roomType);
+      if(room.Availability<=0){
+        toast.error('Sorry! Room is not available for the selected dates')
+        return;
+      }
       const guest=Number(guestDetails.adults) + Number(guestDetails.children);
       const res = await axios.post(`${URL}/bookings/add`, { Hotel_id: id, Check_in_date: guestDetails.checkin, Check_out_date: guestDetails.checkout, Room_type: guestDetails.roomType, guestSize: guest }, {
         headers: {
@@ -182,7 +198,7 @@ const HotelDetails = () => {
       if (res.status === 201) {
         const nights=calculateNights(guestDetails.checkin,guestDetails.checkout);
         const price=Number(guestDetails.price)*nights;
-        handleProceed(price,res.data.id);
+        handleProceed(price,res.data.id,id);
       }
     }
     catch (err) {

@@ -13,6 +13,7 @@ import Explore from "./pages/Explore";
 import HotelDetails from "./pages/HotelDetails";
 import Profile from "./pages/Profile";
 import SearchResults from "./pages/SearchResults";
+import Admin from "./pages/Admin";
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/explore/hotel/:id" element={<HotelDetails />} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/search" element={<SearchResults/>}/>
+        <Route path="/admin" element={<Admin/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>

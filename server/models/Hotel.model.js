@@ -31,6 +31,10 @@ const HotelSchema = mongoose.Schema({
                 Amenities: {
                     type: [String],
                     default: []
+                },
+                Availability:{
+                    type: Number,
+                    default: 3
                 }
             }
         ],
