@@ -21,7 +21,6 @@ import axios from "axios";
 import ReviewCard from "../components/ReviewCard";
 const HotelDetails = () => {
   const navigate=useNavigate();
-  const baseURL=import.meta.env.VITE_APP_URL;
   const { hotels ,reviews} = useContext(UserContext);
   const { id } = useParams();
   const token=localStorage.getItem('token');
@@ -255,7 +254,7 @@ const HotelDetails = () => {
       <div className={isbook||isreview ? 'hotel_main blur' : 'hotel_main'}>
         <div className="hotel_Upper">
           <div className="left_1">
-            <img src={`${baseURL}${hotel.Photos[0]}`} alt="Hotel Image 1" />
+            <img src={hotel?.Photos[0]} alt="Hotel Image 1" />
             <button className="book-button" onClick={() => setisBook(!isbook)}>
               Book Now
             </button>
@@ -287,17 +286,17 @@ const HotelDetails = () => {
                 </div>
                 <div className="right_half">
                   <div className="lower_part_right_half">
-                    <img src={`${baseURL}${hotel.Photos[1]}`} alt="Room 1" />
+                    <img src={hotel?.Photos[1]} alt="Room 1" />
                   </div>
                 </div>
               </div>
               <div className="hotel_images">
                 <div className="upper_contain">
-                  <img src={`${baseURL}${hotel.Photos[2]}`} alt="Room 2" />
+                  <img src={hotel?.Photos[2]} alt="Room 2" />
                   {/* <p>Deluxe Room</p> */}
                 </div>
                 <div className="lower_contain">
-                  <img src={`${baseURL}${hotel.Photos[3]}`} alt="Room 3" />
+                  <img src={hotel?.Photos[3]} alt="Room 3" />
                   {/* <p>Family Suite</p> */}
                 </div>
               </div>

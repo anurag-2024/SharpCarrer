@@ -51,7 +51,7 @@ export const UserProvider=({children})=>{
         if(!token) settoken(localStorage.getItem('token'));
     },[token])
     return (
-        <UserContext.Provider value={{user,hotels,reviews,searchHotels,setSearchHotels}}>
+        <UserContext.Provider value={{user,hotels,reviews,searchHotels,setSearchHotels,setuser}}>
             {children}
         </UserContext.Provider>
     )

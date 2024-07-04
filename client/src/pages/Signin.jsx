@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/Signin.scss';
 import img2 from '../assets/images/signin.jpg'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { URL } from '../utils/url';
+import { UserContext } from '../context/UserContext';
 const Signin = () => {
+  const {setuser}=useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const Signin = () => {
       if(res.status===200){
         toast.success('Logged in Successfully');
         localStorage.setItem('token',res.data.token);
+        setuser(res.data.user);
         navigate('/');
       }
     }
