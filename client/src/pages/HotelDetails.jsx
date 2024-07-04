@@ -25,7 +25,6 @@ const HotelDetails = () => {
   const { id } = useParams();
   const token=localStorage.getItem('token');
   const hotel = hotels?.find(hotel => hotel?._id === id);
-  console.log(hotel)
   const hotelreviews=reviews?.filter(review=>review?.Hotel_id===id);
   const [isbook, setisBook] = useState(false);
   const [isreview,setisReview]=useState(false);
@@ -136,7 +135,8 @@ const HotelDetails = () => {
                 }
                 catch(err){
                   toast.error(err.response.data.message);
-                  console.log(err);
+                  emptyForm();
+                  setisBook(!isbook);
                 }
             }
           } catch (err) {

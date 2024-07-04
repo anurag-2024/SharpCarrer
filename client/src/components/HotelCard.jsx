@@ -1,7 +1,11 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { Link } from 'react-router-dom'
 import "./styles/HotelCard.scss"
+import {UserContext} from '../context/UserContext';
 const HotelCard = ({hotel,index}) => {
+    const {reviews}=useContext(UserContext);
+    const review=reviews.filter((review)=>review.Hotel_id===hotel._id);
+    const hotelRating=(review.reduce((acc,curr)=>acc+curr.Rating,0)/review.length).toFixed(1);
     return (
         <>
             <div
@@ -22,7 +26,7 @@ const HotelCard = ({hotel,index}) => {
                         </Link>
                         <div className="rating">
                             <i className="fas fa-star"></i>
-                            <p>5</p>
+                            <p>{hotelRating}</p>
                         </div>
                     </div>
                     <div className="lower">

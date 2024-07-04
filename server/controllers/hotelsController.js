@@ -105,7 +105,6 @@ export const updateavailability=async(req,res)=>{
 			return res.status(404).json({ message: 'Room not found' });
 		}
 		room.Availability=newAvailablity;
-		console.log(hotel);
 		await hotel.save();
 		res.status(200).json({message:"Room availability updated successfully"});
 	}

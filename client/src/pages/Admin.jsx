@@ -9,9 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const Admin = () => {
   const navigate=useNavigate();
   const { hotels, setHotels,role } = useContext(UserContext);
-  console.log(role);
   const [editingHotel, setEditingHotel] = useState(false);
-  console.log(editingHotel)
   const [formValues, setFormValues] = useState({});
   useEffect(()=>{
     if(role!=='admin'){
@@ -45,7 +43,6 @@ const Admin = () => {
     e.preventDefault();
       try{
        const res=await axios.put(`${URL}/hotel/update/${formValues._id}`,{updatedData:formValues});
-       console.log(res);
        if(res.status===200){
          toast.success(res.data.message)
          setHotels([...hotels.filter(hotel=>hotel._id!==formValues._id),formValues]);
@@ -53,7 +50,6 @@ const Admin = () => {
        }
       }
       catch(err){
-        console.log(err);
         toast.error(err.response.data.message);
       }
   };
