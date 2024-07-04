@@ -36,7 +36,7 @@ const Header = () => {
               {user ? (
                 <Dropdown align="end" className="d-inline">
                   <Dropdown.Toggle variant="light" className="d-flex align-items-center border-0">
-                    <span className="mx-1 fs-4">Hi, {user.userName}</span>
+                    <span className="mx-1 fs-4">Hi, {user?.userName?.split(" ")[0]}</span>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item as={NavLink} to="/profile">Profile</Dropdown.Item>

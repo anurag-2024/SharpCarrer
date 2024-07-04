@@ -13,8 +13,13 @@ const Profile = () => {
         contact: '',
         address: ''
     });
+    const token = localStorage.getItem('token');
     const [bookings, setBookings] = useState([]);
-
+     useEffect(()=>{
+        if(!token){
+            window.location.href='/';
+        }
+     },[token]);
     useEffect(() => {
         if (user) {
             setUserDetails({
