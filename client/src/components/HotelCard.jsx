@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./styles/HotelCard.scss"
 const HotelCard = ({hotel,index}) => {
+    const baseURL=import.meta.env.VITE_APP_URL;
     return (
         <>
             <div
@@ -10,7 +11,7 @@ const HotelCard = ({hotel,index}) => {
             >
                 <div className="hotel_image">
                     <Link to={`/explore/hotel/${hotel?._id}`}>
-                        <img src={hotel.Photos[0]} alt="Hotel" />
+                        <img src={`${baseURL}${hotel.Photos[0]}`} alt="Hotel" />
                     </Link>
                 </div>
                 <div className="hotel_info">
