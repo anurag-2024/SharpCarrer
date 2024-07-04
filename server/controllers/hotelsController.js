@@ -81,3 +81,14 @@ export const getHotels = async (req, res) => {
 		res.status(500).json({ message: "Internal Server Error" });
 	}
 }
+
+export const searchHotels =async(req,res)=>{
+	try{
+		const location = new RegExp(req.query.location, 'i');
+		const hotels = await Hotel.find({Location: location});
+		res.status(200).json(hotels);
+	}
+	catch(err){
+		res.status(500).json({message:"Internal Server Error"});
+	}
+}

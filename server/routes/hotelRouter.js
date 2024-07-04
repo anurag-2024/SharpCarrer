@@ -1,23 +1,27 @@
 import express from 'express';
-// import { check } from 'express-validator';
-// import { authenticateToken, isAdmin } from '../middlewares/authMiddleware.js';
-import { getHotels, getHotel } from '../controllers/hotelsController.js';
+import { getHotels, getHotel, searchHotels } from '../controllers/hotelsController.js';
 
 const router = express.Router();
 
 /**
- * Get all rooms
+ * Search hotels
  * 
- * @route 	{GET} /api/rooms
+ * @route {GET} /api/hotels/search
  */
-router.get('/', getHotels); //No need to authenticate here. Anyone can view rooms
+router.get('/search', searchHotels);
 
 /**
- * Get a room
+ * Get a hotel by ID
  * 
- * @route 	{GET} /api/rooms/:id
+ * @route {GET} /api/hotels/:id
  */
 router.get('/:id', getHotel);
 
+/**
+ * Get all hotels
+ * 
+ * @route {GET} /api/hotels
+ */
+router.get('/', getHotels);
 
 export default router;

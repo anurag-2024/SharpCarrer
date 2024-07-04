@@ -1,8 +1,14 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import Typed from 'typed.js';
 import { toast } from 'react-toastify';
 import './styles/HeroSection.scss';
+import { URL } from '../utils/url';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 const HeroSection = () => {
+  const navigate=useNavigate();
+  const {setSearchHotels}=useContext(UserContext);
   const [destination, setDestination] = useState('');
   const video = 'https://gateway.pinata.cloud/ipfs/QmQs9Na5A4C5kBXtUowAP6bdpsLTXSyru885f3cKdovKBn';
   const el = React.useRef(null);
@@ -19,11 +25,21 @@ const HeroSection = () => {
       typed.destroy();
     };
   }, []);
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (!destination) {
       toast.error('Please enter a destination');
       return;
+    }
+    try{
+      const res=await axios.get(`${URL}/hotel/search?location=${destination}`);
+      if(res.status===200){
+        setSearchHotels(res.data);
+        navigate('/search');
+      }
+    }
+    catch(err){
+       toast.error(err.response.data.message);
     }
   }
   return (

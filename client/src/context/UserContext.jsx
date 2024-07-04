@@ -8,6 +8,7 @@ export const UserProvider=({children})=>{
     const [user,setuser]=useState();
     const [hotels,setHotels]=useState();
     const [reviews,setReviews]=useState();
+    const [searchHotels,setSearchHotels]=useState();
     const [token,settoken]=useState(localStorage.getItem('token') || null);
     const getUser=async()=>{
         try{ 
@@ -50,7 +51,7 @@ export const UserProvider=({children})=>{
         if(!token) settoken(localStorage.getItem('token'));
     },[token])
     return (
-        <UserContext.Provider value={{user,hotels,reviews}}>
+        <UserContext.Provider value={{user,hotels,reviews,searchHotels,setSearchHotels}}>
             {children}
         </UserContext.Provider>
     )
