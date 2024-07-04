@@ -4,8 +4,8 @@ import "./styles/HotelCard.scss"
 import {UserContext} from '../context/UserContext';
 const HotelCard = ({hotel,index}) => {
     const {reviews}=useContext(UserContext);
-    const review=reviews.filter((review)=>review.Hotel_id===hotel._id);
-    const hotelRating=(review.reduce((acc,curr)=>acc+curr.Rating,0)/review.length).toFixed(1);
+    const review=reviews?.filter((review)=>review?.Hotel_id===hotel._id);
+    const hotelRating=(review?.reduce((acc,curr)=>acc+curr.Rating,0)/review?.length).toFixed(1);
     return (
         <>
             <div

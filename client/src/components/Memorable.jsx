@@ -1,41 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import "./styles/Memorable.scss";
 import memorable from '../assets/images/memorable.jpg';
 import img1 from '../assets/images/img1.jpeg';
+import {UserContext} from '../context/UserContext';
 const Memorable = () => {
-  const [reviews, setReviews] = useState([
-    {
-      image: "https://via.placeholder.com/100",
-      rating: 4,
-      text: " This is the first memorable insight. The text should wrap correctly within the review box without overflowing This is the second memorable insight."
-    },
-    {
-      image: "https://via.placeholder.com/100",
-      rating: 5,
-           text: " This is the first memorable insight. The text should wrap correctly within the review box without overflowing This is the second memorable insight."
-    },
-    {
-      image: "https://via.placeholder.com/100",
-      rating: 3,
-          text: " This is the first memorable insight. The text should wrap correctly within the review box without overflowing This is the second memorable insight."
-    },
-    {
-        image: "https://via.placeholder.com/100",
-        rating: 4,
-             text: " This is the first memorable insight. The text should wrap correctly within the review box without overflowing This is the second memorable insight."
-      },
-      {
-        image: "https://via.placeholder.com/100",
-        rating: 5,
-            text: " This is the first memorable insight. The text should wrap correctly within the review box without overflowing This is the second memorable insight."
-      },
-      {
-        image: "https://via.placeholder.com/100",
-        rating: 3,
-             text: " This is the first memorable insight. The text should wrap correctly within the review box without overflowing This is the second memorable insight."
-      }
-  ]);
-
+  const {reviews}=useContext(UserContext);
+  console.log(reviews);
   const renderStars = (rating) => {
     return (
       <div className="stars">
@@ -55,11 +25,11 @@ const Memorable = () => {
         <div className="memorable_left">
           <p className="arrow">&lt;</p>
           <div className="memorable_reviews">
-            {reviews.map((review, index) => (
+            {reviews?.map((review, index) => (
               <div key={index} className="review">
                 <img src={img1} alt="" className="review-image" />
-                {renderStars(review.rating)}
-                <p>{review.text}</p>
+                {renderStars(review.Rating)}
+                <p>{review.Review_text}</p>
               </div>
             ))}
           </div>
