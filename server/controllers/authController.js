@@ -18,11 +18,11 @@ export const signup = async (req, res) => {
 	try {
 		let user = await User.findOne({ Email });
 		if (user) {
-			return res.status(400).json({ msg: 'User with the same email address already exists!' });
+			return res.status(400).json({ message: 'User with the same email address already exists!' });
 		}
 		user = await User.findOne({ Contact_no });
 		if (user) {
-			return res.status(400).json({ msg: 'User with the same phone number already exists!' });
+			return res.status(400).json({ message: 'User with the same phone number already exists!' });
 		}
 
 		user = new User({ userName, Email, Password, Contact_no,Is_verified });
